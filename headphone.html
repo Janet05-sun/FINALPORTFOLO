@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Headphone - Janet Sun</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Source+Serif+4:opsz@8..60&family=Roboto+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .project-hero {
+    padding: 120px 10%;
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('photo/headphone/heaphones.JPG');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #000;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .project-hero h1 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #323232;
+  }
+  .project-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 600px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Timeline Styles */
+  .process-section {
+    margin: 80px 0;
+    margin-top: 40px;
+  }
+  .timeline-container {
+    position: relative;
+    padding: 0;
+  }
+  .timeline-glass-pill {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(40px) saturate(2);
+    -webkit-backdrop-filter: blur(40px) saturate(2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 100px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.194);
+    z-index: 0;
+  }
+  .timeline-glass-pill::before {
+    content: "";
+    position: absolute;
+    top: 62.5px;
+    left: 80px;
+    right: 80px;
+    height: 1px;
+    background: rgb(255, 255, 255);
+    z-index: 0;
+  }
+  .timeline-items {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+    padding: 30px 15%;
+  }
+  .timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+  }
+  .timeline-number {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px) saturate(1.5);
+    -webkit-backdrop-filter: blur(10px) saturate(1.5);
+    border: 1px solid rgba(255, 255, 255, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: #303030;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    z-index: 10;
+  }
+  .timeline-number:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px);
+  }
+  .timeline-item h4 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 0;
+    color: #555;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  /* Gallery Styles */
+  .project-gallery {
+    padding: 80px 10%;
+    background: #fff;
+    position: relative;
+    z-index: 10;
+  }
+  .gallery-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .gallery-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+  .gallery-video-container {
+    width: 45%;
+    margin: 40px auto;
+    aspect-ratio: 1 / 0.86;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+  .gallery-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.01);
+    transform-origin: center bottom;
+    display: block;
+  }
+
+  /* Ideation Section */
+  .ideation-section {
+    padding: 100px 10%;
+    background: #fff;
+  }
+  .ideation-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .ideation-header h2 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+    color: #666;
+    text-align: center;
+    font-weight: 400;
+  }
+  .ideation-menu {
+    border-top: 1px solid #e0e0e0;
+  }
+  .ideation-item {
+    border-bottom: 1px solid #e0e0e0;
+    overflow: hidden;
+  }
+  .ideation-trigger {
+    width: 100%;
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .ideation-trigger:hover {
+    padding-left: 10px;
+  }
+  .ideation-title {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #000;
+    letter-spacing: -1px;
+  }
+  .ideation-icon {
+    font-size: 1.5rem;
+    transition: transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
+    font-weight: 300;
+  }
+  .ideation-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 2.5s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+  }
+  .ideation-item.active .ideation-content {
+    max-height: 1200px;
+    padding-bottom: 40px;
+    opacity: 1;
+  }
+  .ideation-item.active .ideation-icon {
+    transform: rotate(45deg);
+  }
+  .ideation-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    max-width: 800px;
+    margin-bottom: 30px;
+  }
+
+  .zoomable {
+    cursor: none;
+    transition: filter 0.3s ease;
+  }
+  .zoomable:hover {
+    filter: brightness(1.1);
+  }
+  .sketch-img {
+    filter: brightness(1.1) contrast(1.1);
+  }
+
+  .back-button {
+    margin-top: 50px;
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    font-size: 14px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 4px;
+  }
+
+  /* Lightbox Styles */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    cursor: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.active {
+    display: flex;
+    opacity: 1;
+  }
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 4px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="cursor"></div>
+
+<div class="nav" style="opacity: 1;">
+  <div onclick="window.location.href='index.html'" style="cursor: pointer;">Janet Sun</div>
+  <div class="nav-right">
+    <span onclick="window.location.href='index.html#work'" style="cursor: pointer;">Work</span>
+    <span onclick="window.location.href='about.html'" style="cursor: pointer;">About</span>
+  </div>
+</div>
+
+<div class="project-hero">
+  <h1>Headphone</h1>
+  <div class="project-description">
+    <p>Visual Storytelling & Motion Design</p>
+    <br>
+    <p>A cinematic exploration of industrial design, focusing on the interplay between light, material, and form. This project visualizes the haptic and sensory qualities of audio technology through high-fidelity motion graphics.</p>
+  </div>
+
+  <div class="process-section">
+    <div class="timeline-container">
+      <div class="timeline-glass-pill"></div>
+      <div class="timeline-items">
+        <div class="timeline-item" onclick="document.getElementById('concept-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
+          <div class="timeline-number">1</div>
+          <h4>Concept</h4>
+        </div>
+        <div class="timeline-item" onclick="document.getElementById('moodboard-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
+          <div class="timeline-number">2</div>
+          <h4>Mood Board</h4>
+        </div>
+        <div class="timeline-item" onclick="document.getElementById('sketch-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
+          <div class="timeline-number">3</div>
+          <h4>Sketches</h4>
+        </div>
+        <div class="timeline-item" onclick="document.getElementById('motion-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
+          <div class="timeline-number">4</div>
+          <h4>Motion</h4>
+        </div>
+        <div class="timeline-item" onclick="document.getElementById('details-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
+          <div class="timeline-number">5</div>
+          <h4>Details</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="problem-section">
+  <span class="problem-label">The Problem</span>
+  <h2 class="problem-statement">
+    How can re-design the <i>traditional</i> headphones in a more stylized and unique way?
+  </h2>
+</div>
+
+<div class="project-gallery">
+  <div class="gallery-layout">
+    <div class="gallery-video-container" style="grid-column: span 2;">
+      <video autoplay muted loop playsinline>
+        <source src="photo/headphone/Sequence 01.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+<div class="ideation-section" id="moodboard-target" style="padding-top: 50px;">
+  <div class="ideation-container">
+    <div class="ideation-header">
+      <h2>Mood Board</h2>
+    </div>
+    <div class="ideation-text">
+      <p>Material, form, and light references—sculptural jewelry, translucent panels, iridescent surfaces, and glass.</p>
+    </div>
+    <div class="moodboard-gallery" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px;">
+      <img src="photo/headphone/@panconesi • Instagram photos and videos.jpg" alt="Panconesi sculptural jewelry" class="zoomable" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <img src="photo/headphone/download (8).jpg" alt="Translucent panel interior" class="zoomable" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <img src="photo/headphone/download (9).jpg" alt="Pink vessel with metallic texture" class="zoomable" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <img src="photo/headphone/download (10).jpg" alt="Abstract metallic and pink artwork" class="zoomable" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <img src="photo/headphone/Floor Tiles &amp; Wall Tiles.jpg" alt="Iridescent mosaic tiles" class="zoomable" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <img src="photo/headphone/Glass Block.jpg" alt="Colorful glass block wall" class="zoomable" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <img src="photo/headphone/CITRINE HOOPS.jpg" alt="Citrine hoop earrings" class="zoomable" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <img src="photo/headphone/download (11).jpg" alt="Green tile mosaic" class="zoomable" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <img src="photo/headphone/download (12).jpg" alt="Sculptural ear cuff jewelry" class="zoomable" style="width: 100%; height: 260px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+    </div>
+  </div>
+</div>
+
+<div class="ideation-section" id="concept-target">
+  <div class="ideation-container">
+    <div class="ideation-header">
+      <h2>Conceptual Study</h2>
+    </div>
+    <div class="ideation-menu">
+      <div class="ideation-item">
+        <button class="ideation-trigger" onclick="toggleIdeation(this)">
+          <span class="ideation-title">Form & Light</span>
+          <span class="ideation-icon">+</span>
+        </button>
+        <div class="ideation-content">
+          <div class="ideation-text">
+            <p>The project began as an investigation into how studio lighting can emphasize the curvature and material honesty of industrial products. By treating the headphones as a landscape of tactile surfaces, we highlight the precision of the assembly.</p>
+          </div>
+          <div class="why-gallery" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+            <img src="photo/headphone/Screenshot 2026-01-24 102645.png" alt="Form Study 1" class="zoomable" style="width: 100%; border-radius: 12px;">
+            <img src="photo/headphone/Screenshot 2026-01-24 102726.png" alt="Form Study 2" class="zoomable" style="width: 100%; border-radius: 12px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ideation-section" id="sketch-target" style="padding-top: 50px;">
+  <div class="ideation-container">
+    <div class="ideation-header">
+      <h2>Sketches</h2>
+    </div>
+    <div class="ideation-text">
+      <p>Early pencil sketches exploring form, profile views, and material inspiration—from bubble and organic shapes to sea glass and rings.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: 0.7fr 1.15fr 1.15fr; gap: 20px; margin-top: 30px;">
+      <img src="photo/headphone/IMG_4530.jpg" alt="Headphone sketch — bubble and organic form" class="zoomable sketch-img" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <img src="photo/headphone/IMG_4564.jpg" alt="Headphone sketch — profile with rings, sleek modern" class="zoomable sketch-img" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <img src="photo/headphone/IMG_4637.jpg" alt="Headphone sketch — sea glass and jewels line detail" class="zoomable sketch-img" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+    </div>
+  </div>
+</div>
+
+<div class="ideation-section" id="motion-target" style="padding-top: 50px;">
+  <div class="ideation-container">
+    <div class="ideation-header">
+      <h2>Motion Graphics</h2>
+    </div>
+    <div class="ideation-text">
+      <p>Visualizing the invisible—sound waves and haptic feedback are translated into light and motion. The Sequence explores the dynamic transition between idle and active states of the device.</p>
+    </div>
+    <div style="margin-top: 40px;">
+      <img src="photo/headphone/Screenshot 2026-01-24 102849.png" alt="Motion Sequence" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+    </div>
+  </div>
+</div>
+
+<div class="ideation-section" id="details-target" style="padding-top: 50px;">
+  <div class="ideation-container">
+    <div class="ideation-header">
+      <h2>Material Details</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+       <img src="photo/headphone/Screenshot 2026-01-24 102922.png" alt="Texture Close-up" class="zoomable" style="width: 100%; border-radius: 12px;">
+       <div style="width: 100%; border-radius: 12px; overflow: hidden;">
+         <img src="photo/headphone/heaphones.JPG" alt="Final Render" class="zoomable" style="width: 100%; transform: scale(1.5); transform-origin: center;">
+       </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; padding: 60px 0 100px 0; background: #fff;">
+  <a href="index.html" class="back-button" onclick="sessionStorage.setItem('skipIndexAnimations','1')">← Back to Home</a>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <img src="" alt="Fullscreen Image">
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <p>&copy; 2026 Janet Sun. All rights reserved.</p>
+    </div>
+    <div class="footer-right">
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+      <a href="mailto:janetsun05@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  function toggleIdeation(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+  }
+
+  // Lightbox functionality
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const images = document.querySelectorAll('.zoomable');
+  
+  images.forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  });
+</script>
+</body>
+</html>

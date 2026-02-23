@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Locked Lotus - Janet Sun</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Source+Serif+4:opsz@8..60&family=Roboto+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .project-hero {
+    padding: 120px 10%;
+    background: url('photo/LockedLotus/Untitled_White_Background_Edit_2026-02-21_15-52.png') center / cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #222;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .project-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+    pointer-events: none;
+  }
+  .project-hero h1 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #222;
+    position: relative;
+    z-index: 1;
+  }
+  .project-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 600px;
+    color: #444;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Timeline (light hero: dark text) */
+  .process-section {
+    margin: 80px 0 0 0;
+    margin-top: 40px;
+    position: relative;
+    z-index: 10;
+  }
+  .timeline-container {
+    position: relative;
+    padding: 0;
+  }
+  .timeline-glass-pill {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(40px) saturate(2);
+    -webkit-backdrop-filter: blur(40px) saturate(2);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 100px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+    z-index: 0;
+  }
+  .timeline-glass-pill::before {
+    content: "";
+    position: absolute;
+    top: 62.5px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 0;
+  }
+  .timeline-items {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    z-index: 1;
+    padding: 30px 12%;
+  }
+  .timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33.33%;
+  }
+  .timeline-number {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px) saturate(1.5);
+    -webkit-backdrop-filter: blur(10px) saturate(1.5);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: #303030;
+    margin-bottom: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    z-index: 10;
+  }
+  .timeline-item h4 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 0;
+    color: #444;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  .project-gallery {
+    padding: 80px 10%;
+    background: #fff;
+    position: relative;
+    z-index: 10;
+  }
+  .ideation-section {
+    padding: 100px 10%;
+    background: #fff;
+  }
+  .ideation-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .ideation-header h2 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+    color: #666;
+    text-align: center;
+    font-weight: 400;
+  }
+  .ideation-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 40px;
+    max-width: 800px;
+  }
+  .back-button {
+    display: inline-block;
+    padding: 15px 30px;
+    border: 1px solid #000;
+    text-decoration: none;
+    color: #000;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    transition: all 0.3s;
+    margin-top: 40px;
+  }
+  .back-button:hover {
+    background: #000;
+    color: #fff;
+  }
+  .zoomable {
+    cursor: none;
+  }
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    cursor: none;
+  }
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+  }
+  .process-subsection {
+    margin-bottom: 48px;
+  }
+  .process-subsection h3 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #888;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .media-grid img, .media-grid video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    display: block;
+  }
+  .media-grid video {
+    background: #000;
+  }
+  .key-steps-index {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .key-steps-index a {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #666;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 100px;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+  }
+  .key-steps-index a:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+
+<div class="nav" style="opacity: 1;">
+  <div onclick="window.location.href='index.html'" style="cursor: pointer;">Janet Sun</div>
+  <div class="nav-right">
+    <span onclick="window.location.href='index.html#work'" style="cursor: pointer;">Work</span>
+    <span onclick="window.location.href='about.html'" style="cursor: pointer;">About</span>
+  </div>
+</div>
+
+<div class="project-hero">
+  <h1>Locked Lotus</h1>
+  <div class="project-description">
+    A decorative piece featuring lotus flowers and a hexagonal lantern with a pagoda-style roof—serene, refined, and artisanal. Rose gold and soft pink on a clean, contemplative base.
+  </div>
+
+  <div class="process-section">
+    <div class="timeline-container">
+      <div class="timeline-glass-pill"></div>
+      <div class="timeline-items">
+        <div class="timeline-item" onclick="document.getElementById('final-product-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
+          <div class="timeline-number">1</div>
+          <h4>Final product</h4>
+        </div>
+        <div class="timeline-item" onclick="document.getElementById('process-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
+          <div class="timeline-number">2</div>
+          <h4>Process</h4>
+        </div>
+        <div class="timeline-item" onclick="document.getElementById('exhibition-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
+          <div class="timeline-number">3</div>
+          <h4>Exhibition</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="project-gallery">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <img src="photo/LockedLotus/Untitled_White_Background_Edit_2026-02-21_15-52.png" alt="Locked Lotus — lotus and lantern" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+  </div>
+</div>
+
+<div class="ideation-section">
+  <div class="ideation-container">
+    <div class="ideation-header">
+      <h2>About</h2>
+    </div>
+    <div class="ideation-text">
+      <p>Locked Lotus combines a central hexagonal lantern with delicate glass panels and etched patterns, flanked by pink lotus flowers on a reflective, four-lobed base. The warm metal and soft botanical forms create a quiet, object-based narrative.</p>
+    </div>
+  </div>
+</div>
+
+<div class="ideation-section" id="final-product-target" style="background: #fff;">
+  <div class="ideation-container">
+    <div class="ideation-header">
+      <h2>Final product look</h2>
+    </div>
+    <div class="media-grid">
+      <img src="photo/LockedLotus/67271585781__CF0CACCE-B13D-438D-9310-F69FBD7F2457.jpg" alt="Locked Lotus final" class="zoomable">
+      <img src="photo/LockedLotus/DSC02969.JPG" alt="Locked Lotus final" class="zoomable">
+      <img src="photo/LockedLotus/IMG_9066.jpg" alt="Locked Lotus final" class="zoomable">
+      <img src="photo/LockedLotus/IMG_9067.jpg" alt="Locked Lotus final" class="zoomable">
+      <video autoplay muted loop playsinline style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+        <source src="photo/LockedLotus/67234342973__1B6FE52D-B189-4960-B57D-A3773A772669.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+<div class="ideation-section" id="process-target">
+  <div class="ideation-container">
+    <div class="ideation-header">
+      <h2>Process key steps</h2>
+    </div>
+    <nav class="key-steps-index" aria-label="Key steps">
+      <a href="#step-sketches" onclick="document.getElementById('step-sketches').scrollIntoView({ behavior: 'smooth' }); return false;">Sketches</a>
+      <a href="#step-cutlist" onclick="document.getElementById('step-cutlist').scrollIntoView({ behavior: 'smooth' }); return false;">Cut list</a>
+      <a href="#step-manufacturing" onclick="document.getElementById('step-manufacturing').scrollIntoView({ behavior: 'smooth' }); return false;">Manufacturing</a>
+      <a href="#step-finaltouches" onclick="document.getElementById('step-finaltouches').scrollIntoView({ behavior: 'smooth' }); return false;">Final touches</a>
+    </nav>
+    <div class="process-subsection" id="step-sketches">
+      <h3>Sketches</h3>
+      <div class="media-grid">
+        <img src="photo/LockedLotus/IMG_5948.jpg" alt="Locked Lotus sketches" class="zoomable">
+      </div>
+    </div>
+    <div class="process-subsection" id="step-cutlist">
+      <h3>Cut list</h3>
+      <div class="media-grid">
+        <img src="photo/LockedLotus/IMG_2029.JPG" alt="Locked Lotus cut list" class="zoomable">
+      </div>
+    </div>
+    <div class="process-subsection" id="step-manufacturing">
+      <h3>Manufacturing</h3>
+      <div class="media-grid">
+        <img src="photo/LockedLotus/IMG_8193.jpg" alt="Locked Lotus manufacturing" class="zoomable">
+        <img src="photo/LockedLotus/IMG_8272.jpg" alt="Locked Lotus manufacturing" class="zoomable">
+        <img src="photo/LockedLotus/IMG_8919.jpg" alt="Locked Lotus manufacturing" class="zoomable">
+      </div>
+    </div>
+    <div class="process-subsection" id="step-finaltouches">
+      <h3>Final touches</h3>
+      <div class="media-grid">
+        <video autoplay muted loop playsinline style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+          <source src="photo/LockedLotus/IMG_8194.mp4" type="video/mp4">
+        </video>
+        <video autoplay muted loop playsinline style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+          <source src="photo/LockedLotus/IMG_9125.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ideation-section" id="exhibition-target" style="background: #fff;">
+  <div class="ideation-container">
+    <div class="ideation-header">
+      <h2>Final exhibition</h2>
+    </div>
+    <div class="media-grid">
+      <video autoplay muted loop playsinline style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+        <source src="photo/LockedLotus/My Movie 1.mp4" type="video/mp4">
+      </video>
+      <video autoplay muted loop playsinline style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+        <source src="photo/LockedLotus/My Movie 2.mp4" type="video/mp4">
+      </video>
+      <video autoplay muted loop playsinline style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+        <source src="photo/LockedLotus/My Movie 3.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; padding: 60px 0 100px 0; background: #fff;">
+  <a href="index.html" class="back-button" onclick="sessionStorage.setItem('skipIndexAnimations','1')">← Back to Home</a>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <img src="" alt="Fullscreen Image">
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <p>&copy; 2026 Janet Sun. All rights reserved.</p>
+    </div>
+    <div class="footer-right">
+      <a href="mailto:janetsun05@gmail.com">Email</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = lightbox.querySelector('img');
+  var zoomables = document.querySelectorAll('.zoomable');
+  zoomables.forEach(function(img) {
+    img.addEventListener('click', function() {
+      lightboxImg.src = img.src;
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  lightbox.addEventListener('click', function() {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  });
+</script>
+
+</body>
+</html>
