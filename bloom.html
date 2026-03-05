@@ -9,113 +9,42 @@
 <link rel="stylesheet" href="styles.css">
 <style>
   .project-hero {
-    padding: 120px 10%;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('photo/Bloom/IMG_3651 (1).png');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-attachment: fixed;
-    color: #fff;
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    background-repeat: no-repeat;
+    min-height: 60vh;
   }
-  .project-hero h1 {
+  .project-hero-title {
+    padding: 40px 10% 60px;
+    background: #fff;
+  }
+  .project-hero-title h1 {
     font-family: 'Roboto Mono', monospace;
     font-size: 3rem;
     margin-bottom: 20px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #fff;
+    color: #323232;
   }
-  .project-description {
+  .project-hero-title .project-description {
     font-family: 'Inter', sans-serif;
     font-size: 1.2rem;
     line-height: 1.6;
     max-width: 600px;
-    color: #eee;
-    margin-bottom: 20px;
-  }
-  
-  /* Timeline Styles */
-  .process-section {
-    margin: 80px 0;
-    margin-top: 40px;
-    position: relative;
-    z-index: 10;
-  }
-  .timeline-container {
-    position: relative;
-    padding: 0;
-  }
-  .timeline-glass-pill {
-    position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 140px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(40px) saturate(2);
-    -webkit-backdrop-filter: blur(40px) saturate(2);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 100px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.194);
-    z-index: 0;
-  }
-  .timeline-glass-pill::before {
-    content: "";
-    position: absolute;
-    top: 62.5px;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: rgb(255, 255, 255);
-    z-index: 0;
-  }
-  .timeline-items {
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    z-index: 1;
-    padding: 30px 12%;
-  }
-  .timeline-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 25%;
-  }
-  .timeline-number {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px) saturate(1.5);
-    -webkit-backdrop-filter: blur(10px) saturate(1.5);
-    border: 1px solid rgba(255, 255, 255, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 16px;
-    font-weight: 700;
-    color: #303030;
-    margin-bottom: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-    z-index: 10;
-  }
-  .timeline-item h4 {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 12px;
-    text-transform: uppercase;
-    margin: 0;
-    color: #fff;
-    text-align: center;
-    letter-spacing: 1px;
+    color: #666;
+    margin-bottom: 0;
   }
 
+  .overview-context .overview-block-content {
+    max-width: 920px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #888;
+  }
+  
   /* Gallery Styles */
   .project-gallery {
     padding: 80px 10%;
@@ -166,18 +95,18 @@
 
   .back-button {
     display: inline-block;
-    padding: 15px 30px;
-    border: 1px solid #000;
-    text-decoration: none;
+    margin-top: 40px;
     color: #000;
+    text-decoration: none;
     font-family: 'Roboto Mono', monospace;
     font-size: 14px;
-    transition: all 0.3s;
-    margin-top: 40px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000;
+    padding-bottom: 4px;
+    transition: opacity 0.3s;
   }
   .back-button:hover {
-    background: #000;
-    color: #fff;
+    opacity: 0.7;
   }
 
   .lightbox {
@@ -213,7 +142,23 @@
   }
 </style>
 </head>
-<body>
+<body class="has-sidebar">
+
+<aside class="sidebar">
+  <a href="index.html" class="sidebar-home" onclick="sessionStorage.setItem('skipIndexAnimations','1')"><span class="sidebar-home-arrow">←</span> Home</a>
+  <div class="sidebar-section-title">On this page</div>
+  <ul class="sidebar-page-nav">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#part1-target">Part 1 </a></li>
+    <li><a href="#moodboard-target">Mood board</a></li>
+    <li><a href="#sketches-target">Sketches</a></li>
+    <li><a href="#sketch-models-target">Sketch models</a></li>
+    <li><a href="#prompt-target">Part 2</a></li>
+    <li><a href="#mechanism-target">Mechanism</a></li>
+    <li><a href="#marketing-target">Marketing</a></li>
+  </ul>
+  <a href="#overview" class="sidebar-back-to-top">↑ Back to top</a>
+</aside>
 
 <div class="cursor"></div>
 
@@ -225,42 +170,18 @@
   </div>
 </div>
 
-<div class="project-hero">
+<div class="project-hero"></div>
+<div class="project-hero-title" id="overview">
   <h1>Bloom</h1>
-  <div class="project-description">
-    A kinetic lighting project exploring the organic movement of nature through mechanical precision and soft illumination.
+  <div class="overview-meta">
+    <span><span class="meta-label">Timeline</span> <span class="meta-value">4 weeks</span></span>
+    <span><span class="meta-label">Tools</span> <span class="meta-value">Adobe Illustrator, Solidworks, lasercutting, 3D Printing, finishing tools.</span></span>
   </div>
-
-  <div class="process-section">
-    <div class="timeline-container">
-      <div class="timeline-glass-pill"></div>
-      <div class="timeline-items">
-        <div class="timeline-item" onclick="document.getElementById('concept-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">1</div>
-          <h4>Concept</h4>
-        </div>
-        <div class="timeline-item" onclick="document.getElementById('prototype-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">2</div>
-          <h4>Prototyping</h4>
-        </div>
-        <div class="timeline-item" onclick="document.getElementById('mechanism-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">3</div>
-          <h4>Mechanism</h4>
-        </div>
-        <div class="timeline-item" onclick="document.getElementById('final-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">4</div>
-          <h4>Final Piece</h4>
-        </div>
-      </div>
-    </div>
+  <div class="overview-context">
+    <div class="overview-block-label">Context</div>
+    <div class="overview-block-content">Bloom is a two part project inspired by a specimen from the One Nature Lab collection, the Jimson weed seed pod. The first phase focused on close observation and analysis of the natural form, testing our ability to extract meaningful design principles from nature. The second phase required selecting one piece from the desk accessory set and redesigning it for easier manufacturing and replication, simplifying the form as well. Alongside this, we developed a tool that serves as the core mechanism for multiplying and generating the repeated shape.</div>
   </div>
-</div>
-
-<div class="problem-section">
-  <span class="problem-label">The Problem</span>
-  <h2 class="problem-statement">
-    How can mechanical precision capture the delicate, organic movement of nature in a lighting fixture?
-  </h2>
+  
 </div>
 
 <div class="project-gallery">
@@ -282,20 +203,12 @@
       <img src="photo/Bloom/ff2.png" alt="Bloom Part 1" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
       <img src="photo/Bloom/ff3.png" alt="Bloom Part 1" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
     </div>
+    <p style="font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6; color: #555; max-width: 720px; margin: 24px auto 0; text-align: center;">
+      A desk accessory family translating the Jimson weed seed pod into functional pieces for everyday use. First picture is a pen holder and the other are tape dispensers. Tape dispenser mouth can mechanically extend higher for aestehic or functional reasons. Pens are held through the holes of head.
+    </p>
     <div style="margin-top: 80px; padding-top: 60px; border-top: 1px solid rgba(0,0,0,0.08); text-align: center;">
       <h3 style="font-family: 'Roboto Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 24px;">Jameson weed seed pod from RISD nature lab</h3>
       <img src="photo/Bloom/IMG_3512.jpg" alt="Jameson weed seed pod from RISD nature lab" class="zoomable" style="width: 100%; max-width: 600px; margin: 0 auto; display: block; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
-    </div>
-  </div>
-</div>
-
-<div class="ideation-section" id="form-exploration-target">
-  <div class="ideation-container">
-    <div class="ideation-header">
-      <h2>Form exploration</h2>
-    </div>
-    <div style="text-align: center;">
-      <img src="photo/Bloom/IMG_3304.jpg" alt="Form exploration — sketches and physical models" class="zoomable" style="width: 100%; max-width: 800px; margin: 0 auto; display: block; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
     </div>
   </div>
 </div>
@@ -340,20 +253,23 @@
       <img src="photo/Bloom/IMG_3357.jpg" alt="Bloom sketch model" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
       <img src="photo/Bloom/IMG_3362.jpg" alt="Bloom sketch model" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
     </div>
-    <div style="margin-top: 48px;">
-      <h3 style="font-family: 'Roboto Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 20px;">Construction</h3>
+    <div style="margin-top: 56px;">
+      <h3 style="font-family: 'Roboto Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 20px; text-align: center;">Construction</h3>
       <img src="photo/Bloom/process .png" alt="Bloom process — construction" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+    </div>
+    <div class="orthographic-drawings" style="margin-top: 56px;">
+      <h3 style="font-family: 'Roboto Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 20px; text-align: center;">Orthographic drawings</h3>
+      <img src="photo/Bloom/Ortho TP.jpg" alt="Bloom — Tape Dispenser orthographic drawing, Janet Sun 3.2.2025" class="zoomable" style="width: 85%; max-width: 720px; margin: 0 auto; display: block; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+      <img src="photo/Bloom/ortho HP.jpg" alt="Bloom — Pen Holder orthographic drawing, Janet Sun 3.2.2025" class="zoomable" style="width: 85%; max-width: 720px; margin: 24px auto 0; display: block; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
     </div>
   </div>
 </div>
 
-<div class="ideation-section" id="prompt-target">
-  <div class="ideation-container">
-    <div class="ideation-header">
-      <h2>Prompt</h2>
-    </div>
-    <p class="ideation-text" style="margin-top: 0;">How do we create a desk accessory set from Jameson weed?</p>
-  </div>
+<div class="problem-section" id="prompt-target">
+  <span class="problem-label">Part 2</span>
+  <h2 class="problem-statement">
+    How do we redesign one Bloom desk accessory so it can be easily manufactured and multiplied?
+  </h2>
 </div>
 
 <div class="ideation-section" id="part2-target">
@@ -370,28 +286,14 @@
   </div>
 </div>
 
-<div class="ideation-section" id="concept-target">
-  <div class="ideation-container">
-    <div class="ideation-header">
-      <h2>Concept & Form</h2>
-    </div>
-    <div class="ideation-text">
-        <p>Bloom began with a study of how flowers unfurl. The goal was to translate that specific organic rhythm into a mechanical object that could provide both light and movement to a space.</p>
-    </div>
-    <div style="display: grid; grid-template-columns: 1fr; gap: 40px;">
-        <img src="photo/Bloom/IMG_3655 (1).png" alt="Bloom Form Study" class="zoomable" style="width: 100%; border-radius: 12px;">
-    </div>
-  </div>
-</div>
-
 <div class="ideation-section" id="mechanism-target" style="padding-top: 50px;">
   <div class="ideation-container">
     <div class="ideation-header">
-      <h2>The Mechanism</h2>
+      <h2>The Mechanism (jig)</h2>
     </div>
     <div class="ideation-text">
-        <p>The complexity of the piece lies in the internal structure. Below is an exploded view of the custom jig and mechanical components designed to facilitate the smooth, blooming motion.</p>
-    </div>
+     <p> The complexity of the piece lies in its internal structure, requiring the development of a single functional pattern. Below is an exploded view of the three part custom jig designed to support a smooth construction process. The jig separates into three components so that once the acrylic forms around it, the internal pieces can be easily removed from the finished shape. </p>   
+     </div>
     <div style="display: flex; justify-content: center;">
         <img src="photo/Bloom/exploded view jig (1).jpg" alt="Exploded View" class="zoomable" style="width: 80%; border-radius: 12px;">
     </div>
@@ -414,7 +316,8 @@
 </div>
 
 <div style="text-align: center; padding: 60px 0 100px 0; background: #fff;">
-  <a href="index.html" class="back-button" onclick="sessionStorage.setItem('skipIndexAnimations','1')">← Back to Home</a>
+  <a href="mall.html" class="back-button">← Previous project</a>
+  <a href="locked-lotus.html" class="back-button" style="margin-left: 24px;">Next project →</a>
 </div>
 
 <div class="lightbox" id="lightbox">
@@ -424,12 +327,16 @@
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-left">
+      <p style="font-size: 0.9rem; color: #888; margin-bottom: 6px;">Made by hand and &lt;3</p>
       <p>&copy; 2026 Janet Sun. All rights reserved.</p>
     </div>
     <div class="footer-right">
-      <a href="mailto:janetsun05@gmail.com">Email</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Instagram</a>
+      <p class="footer-say-hi">Say hi!</p>
+      <div class="footer-links">
+        <a href="mailto:janetsun05@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/janet-sun05" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="#">Instagram</a>
+      </div>
     </div>
   </div>
 </footer>

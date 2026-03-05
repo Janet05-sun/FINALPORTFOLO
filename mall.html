@@ -9,132 +9,55 @@
 <link rel="stylesheet" href="styles.css">
 <style>
   .project-hero {
-    padding: 120px 10%;
     position: relative;
     overflow: hidden;
-    color: #000;
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    color: #fff; /* Changed to white for better visibility on dark background */
+    min-height: 60vh;
   }
   .project-hero::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100vh; /* Using viewport height for width due to rotation */
-    height: 100vw; /* Using viewport width for height due to rotation */
+    width: 100vh;
+    height: 100vw;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('photo/Mall pVD/IMG_0259.jpg');
     background-size: cover;
-    background-position: center;
-    opacity: 0.8; /* Reduced opacity */
-    filter: brightness(0.6); /* Added dark filter */
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    filter: brightness(0.6);
     transform: translate(-50%, -50%) rotate(-90deg);
     z-index: -1;
   }
-  .project-hero h1 {
+  .project-hero-title {
+    padding: 40px 10% 60px;
+    background: #fff;
+  }
+  .project-hero-title h1 {
     font-family: 'Roboto Mono', monospace;
     font-size: 3rem;
     margin-bottom: 20px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #fff; /* Changed to white */
+    color: #323232;
   }
-  .project-description {
+  .project-hero-title .project-description {
     font-family: 'Inter', sans-serif;
     font-size: 1.2rem;
     line-height: 1.6;
     max-width: 600px;
-    color: #eee; /* Lightened for dark background */
-    margin-bottom: 20px;
-  }
-  
-  /* Timeline Styles */
-  .process-section {
-    margin: 80px 0;
-    margin-top: 40px; /* Matching Seedle's spacing exactly */
-    position: relative;
-    z-index: 10;
-  }
-  .timeline-container {
-    position: relative;
-    padding: 0;
-  }
-  .timeline-glass-pill {
-    position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 140px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(40px) saturate(2);
-    -webkit-backdrop-filter: blur(40px) saturate(2);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 100px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.194);
-    z-index: 0;
-  }
-  .timeline-glass-pill::before {
-    content: "";
-    position: absolute;
-    top: 62.5px;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: rgb(255, 255, 255);
-    z-index: 0;
-  }
-  .timeline-items {
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    z-index: 1;
-    padding: 30px 12%;
-  }
-  .timeline-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
-  }
-  .timeline-number {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px) saturate(1.5);
-    -webkit-backdrop-filter: blur(10px) saturate(1.5);
-    border: 1px solid rgba(255, 255, 255, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 16px;
-    font-weight: 700;
-    color: #303030;
-    margin-bottom: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-    z-index: 10;
-  }
-  .timeline-number:hover {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-5px);
-  }
-  .timeline-item h4 {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 12px;
-    text-transform: uppercase;
-    margin: 0;
-    color: #fff; /* Changed to white for dark hero background */
-    text-align: center;
-    letter-spacing: 1px;
+    color: #666;
+    margin-bottom: 0;
   }
 
+  .overview-context .overview-block-content {
+    max-width: 920px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #888;
+  }
+  
   /* Gallery Styles */
   .project-gallery {
     padding: 90px 10%; /* Increased padding to reduce visual size of images */
@@ -254,18 +177,18 @@
 
   .back-button {
     display: inline-block;
-    padding: 15px 30px;
-    border: 1px solid #000;
-    text-decoration: none;
+    margin-top: 40px;
     color: #000;
+    text-decoration: none;
     font-family: 'Roboto Mono', monospace;
     font-size: 14px;
-    transition: all 0.3s;
-    margin-top: 40px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #000;
+    padding-bottom: 4px;
+    transition: opacity 0.3s;
   }
   .back-button:hover {
-    background: #000;
-    color: #fff;
+    opacity: 0.7;
   }
 
   .lightbox {
@@ -309,7 +232,21 @@
   }
 </style>
 </head>
-<body>
+<body class="has-sidebar">
+
+<aside class="sidebar">
+  <a href="index.html" class="sidebar-home" onclick="sessionStorage.setItem('skipIndexAnimations','1')"><span class="sidebar-home-arrow">←</span> Home</a>
+  <div class="sidebar-section-title">On this page</div>
+  <ul class="sidebar-page-nav">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#research-target">Research</a></li>
+    <li><a href="#inspiration-target">Inspiration</a></li>
+    <li><a href="#design-target">AR Design</a></li>
+    <li><a href="#build-target">The Build</a></li>
+    <li><a href="#exhibition-target">Exhibition</a></li>
+  </ul>
+  <a href="#overview" class="sidebar-back-to-top">↑ Back to top</a>
+</aside>
 
 <div class="cursor"></div>
 
@@ -321,42 +258,23 @@
   </div>
 </div>
 
-<div class="project-hero">
+<div class="project-hero"></div>
+<div class="project-hero-title" id="overview">
   <h1>Echoes of Providence</h1>
-  <div class="project-description">
-    An immersive exhibition at the Providence Place Mall, bringing local spirit back through custom-built AR experiences and community-driven research.
-  </div>
+  <div class="overview-meta">
+    <span><span class="meta-label">Timeline</span> <span class="meta-value">2 months</span></span>
+    <span><span class="meta-label">Team</span> <span class="meta-value">Janet Sun, Diya Mathew and Jack Dacey</span></span>
+    <span><span class="meta-label">Materials</span> <span class="meta-value">Plywood, Bendyply Wood, Wood Beams, and Canvas. </span></span>
 
-  <div class="process-section">
-    <div class="timeline-container">
-      <div class="timeline-glass-pill"></div>
-      <div class="timeline-items">
-        <div class="timeline-item" onclick="document.getElementById('research-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">1</div>
-          <h4>Research</h4>
-        </div>
-        <div class="timeline-item" onclick="document.getElementById('design-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">2</div>
-          <h4>AR Design</h4>
-        </div>
-        <div class="timeline-item" onclick="document.getElementById('build-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">3</div>
-          <h4>The Build</h4>
-        </div>
-        <div class="timeline-item" onclick="document.getElementById('exhibition-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">4</div>
-          <h4>Exhibition</h4>
-        </div>
-      </div>
+    <span><span class="meta-label">Tools</span> <span class="meta-value">Table Saw, Hand Drill, and Kachow gun AR:SnapLens</span></span>
+  </div>
+  <div class="overview-context">
+    <div class="overview-block-label">Context</div>
+    <div class="overview-block-content">This project proposes an immersive exhibition that uses AR to help revive a struggling mall by turning it into a community driven destination. We began with local research and interviews to understand how people in Providence use shared spaces today, what the mall was missing, and what would genuinely bring them back. Insights from the community shaped the concept, content, and tone of the experience, with the goal of translating Providence’s character, creativity, and history into interactive installations throughout the mall. The final outcome frames the mall as a platform for local culture rather than just retail, using AR to layer storytelling, discovery, and participation onto the existing space.
     </div>
   </div>
-</div>
-
-<div class="problem-section">
-  <span class="problem-label">The Problem</span>
-  <h2 class="problem-statement">
-    How can we revitalize a traditional shopping mall by reconnecting the community through immersive AR experiences?
-  </h2>
+   
+  
 </div>
 
 <div class="project-gallery">
@@ -377,7 +295,7 @@
       <h2>Community Research</h2>
     </div>
     <div class="ideation-text">
-        <p>The Providence Place Mall was not performing as well as it did when first built. Our goal was to investigate why and finding ways to bring the "Providence Spirit" back into this commercial hub. We conducted extensive in-person research and interviews with locals to understand their emotional connection to the city.</p>
+        <p>Providence Place Mall has declined in performance since its early years. Our objective was to understand the causes and explore ways to restore the “Providence Spirit” within this commercial center. Through in person research and interviews with local residents, we examined how people feel about the city and what would meaningfully reconnect them to this space.</p>
     </div>
     <div class="research-gallery">
       <img src="photo/Mall pVD/research/Screenshot 2026-02-18 164218.png" alt="Community research — form responses" class="zoomable">
@@ -398,7 +316,7 @@
       <h2>Providence Inspiration</h2>
     </div>
     <div class="ideation-text">
-        <p>Our research into the "Providence Spirit" led us to capture the textures, colors, and atmosphere of the city. These images served as our primary inspiration for the custom AR lenses and physical exhibition structures.</p>
+        <p>We documented Providence and the individuals we interviewed, using their stories and perspectives as our primary source of inspiration. From the character of its residents to the city’s physical and architectural structures, we studied how Providence is shaped both socially and spatially. These observations informed the direction of the project, ensuring the design reflected the identity, history, and built environment of the community.</p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
         <img src="photo/Mall pVD/pvdpics/DSC_0148.JPG" alt="Providence Inspiration" class="zoomable" style="width: 100%; border-radius: 8px; aspect-ratio: 1/1; object-fit: cover;">
@@ -427,7 +345,7 @@
       <h2>Custom AR Experiences</h2>
     </div>
     <div class="ideation-text">
-      <p>Using SnapLens technology, we developed custom augmented reality experiences inspired by the unique identity of Providence. These lenses allowed visitors to interact with the mall environment in a new, digitally-enhanced way that highlighted local culture and history.</p>
+      <p>Using SnapLens technology, we developed custom augmented reality experiences inspired by the unique identity of Providence. These lenses allowed visitors to interact with the mall environment in a new, digitally-enhanced way that highlighted local culture and history. Specifically I created two lenses, one to tribute to the Waterfire event and the other to celebrate the art scene specificaly the murals in providence.</p>
     </div>
     <h3 style="font-family: 'Roboto Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-top: 48px; margin-bottom: 16px;">AR mood board</h3>
     <div style="margin-bottom: 40px; display: flex; justify-content: center;">
@@ -456,13 +374,36 @@
       <h2>The Build: Pedestals & Walls</h2>
     </div>
     <div class="ideation-text">
-        <p>We designed and custom-built physical pedestals and walls to anchor the AR experience. These physical structures acted as markers and portals, bridging the gap between the physical mall space and the digital Providence spirit.</p>
+        <p>We designed and custom-built physical pedestals and walls to anchor the AR experience. These physical structures acted as markers and portals, bridging the gap between the physical mall space and the digital Providence spirit, using QR codes to trigger the AR experiences. Building 9 structures in total.</p>
     </div>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
-       <img src="photo/Mall pVD/IMG_0165.jpg" alt="Pedestal Detail" class="zoomable" style="width: 100%; border-radius: 12px;">
-       <div class="img-horizontal-wrap">
-       <img src="photo/Mall pVD/IMG_0259.jpg" alt="Exhibition Setup" class="zoomable" style="border-radius: 12px;">
-       </div>
+
+    <h3 style="font-family: 'Roboto Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-top: 48px; margin-bottom: 24px;">Process key steps</h3>
+
+    <div style="margin-bottom: 48px;">
+      <p style="font-family: 'Roboto Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #888; margin-bottom: 16px;">Sketch and sketch models</p>
+      <div class="research-gallery" style="margin-top: 0; grid-template-columns: repeat(2, 1fr); align-items: start;">
+        <img src="photo/Mall pVD/IMG_4727.jpg" alt="Workshop build — team constructing curved wooden structure" class="zoomable">
+        <div style="overflow: hidden; width: 100%;">
+          <img src="photo/Mall pVD/IMG_0259.jpg" alt="Paper and cardboard sketch models on workbench" class="zoomable" style="transform: rotate(270deg); width: 100%; height: auto; display: block;">
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 48px;">
+      <p style="font-family: 'Roboto Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #888; margin-bottom: 16px;">Construction</p>
+      <div class="research-gallery" style="margin-top: 0;">
+        <img src="photo/Mall pVD/IMG_0260.jpg" alt="Construction — wooden pedestals and forms in studio" class="zoomable">
+      </div>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+      <p style="font-family: 'Roboto Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #888; margin-bottom: 16px;">Final</p>
+      <div class="research-gallery" style="margin-top: 0;">
+        <img src="photo/Mall pVD/IMG_4916 (1).jpg" alt="Final build — completed pedestals and exhibition elements" class="zoomable">
+      </div>
+    </div>
+
+   
     </div>
   </div>
 </div>
@@ -472,14 +413,21 @@
       <div class="ideation-header">
         <h2>Final Exhibition</h2>
       </div>
-      <div style="margin-top: 40px;">
-        <img src="photo/Mall pVD/IMG_0161.jpg" alt="Full Exhibition Shot" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <div class="process-section" style="margin-top: 60px;">
+        <h3 style="font-family: 'Roboto Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 24px;"></h3>
+        <div class="research-gallery" style="margin-top: 0;">
+          <img src="photo/Mall pVD/IMG_0162.jpg" alt="Exhibition setup — mall interior and installation" class="zoomable">
+          <img src="photo/Mall pVD/IMG_0163.jpg" alt="Exhibition setup — display structures and blue silhouettes" class="zoomable">
+          <img src="photo/Mall pVD/IMG_0164.jpg" alt="Exhibition — swan sculptures and QR code pedestal" class="zoomable">
+          <img src="photo/Mall pVD/IMG_0165.jpg" alt="Exhibition — Echoes of Providence sign and pedestals" class="zoomable">
+        </div>
       </div>
     </div>
   </div>
 
 <div style="text-align: center; padding: 60px 0 100px 0; background: #fff;">
-  <a href="index.html" class="back-button" onclick="sessionStorage.setItem('skipIndexAnimations','1')">← Back to Home</a>
+  <a href="bamboo.html" class="back-button">← Previous project</a>
+  <a href="bloom.html" class="back-button" style="margin-left: 24px;">Next project →</a>
 </div>
 
 <div class="lightbox" id="lightbox">
@@ -489,12 +437,16 @@
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-left">
+      <p style="font-size: 0.9rem; color: #888; margin-bottom: 6px;">Made by hand and &lt;3</p>
       <p>&copy; 2026 Janet Sun. All rights reserved.</p>
     </div>
     <div class="footer-right">
-      <a href="mailto:janetsun05@gmail.com">Email</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Instagram</a>
+      <p class="footer-say-hi">Say hi!</p>
+      <div class="footer-links">
+        <a href="mailto:janetsun05@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/janet-sun05" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="#">Instagram</a>
+      </div>
     </div>
   </div>
 </footer>

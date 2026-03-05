@@ -9,119 +9,45 @@
 <link rel="stylesheet" href="styles.css">
 <style>
   .project-hero {
-    padding: 120px 10%;
     background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('photo/seedle/Gemini_Generated_Image_8rr1y48rr1y48rr1.png');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-attachment: fixed;
-    color: #000;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background-repeat: no-repeat;
+    min-height: 60vh;
   }
-  .project-hero h1 {
+  .project-hero-title {
+    padding: 40px 10% 60px;
+    background: #fff;
+  }
+  .project-hero-title h1 {
     font-family: 'Roboto Mono', monospace;
     font-size: 3rem;
     margin-bottom: 20px;
-    letter-spacing: 4px; /* Tighter letter spacing */
+    letter-spacing: 4px;
     text-transform: uppercase;
     color: #323232;
   }
-  .project-description {
+  .project-hero-title .project-description {
     font-family: 'Inter', sans-serif;
     font-size: 1.2rem;
     line-height: 1.6;
     max-width: 600px;
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+  }
+  .overview-context .overview-block-content {
+    max-width: 920px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #888;
   }
   .project-image-large {
     width: 100%;
     margin-top: 50px;
   }
   
-  /* Timeline Styles */
-  .process-section {
-    margin: 80px 0; /* Reduced space between sections */
-    margin-top: 40px; /* Adjusted top margin */
-  }
-  .timeline-container {
-    position: relative;
-    padding: 0;
-  }
-  .timeline-glass-pill {
-    position: absolute;
-    top: 0;
-    left: 10%;
-    right: 10%;
-    height: 140px;
-    background: rgba(255, 255, 255, 0.15); /* More translucent */
-    backdrop-filter: blur(40px) saturate(2); /* Stronger glass effect */
-    -webkit-backdrop-filter: blur(40px) saturate(2);
-    border: 1px solid rgba(255, 255, 255, 0.4); /* Brighter glass edge */
-    border-radius: 100px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.194);
-    z-index: 0;
-  }
-  .timeline-glass-pill::before {
-    content: "";
-    position: absolute;
-    top: 62.5px; /* Adjusted to center with 30px padding + 32.5px half-circle */
-    left: 80px;
-    right: 80px;
-    height: 1px;
-    background: rgb(255, 255, 255);
-    z-index: 0;
-  }
-  .timeline-items {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    z-index: 1;
-    padding: 30px 15%; /* Reduced vertical padding, increased horizontal margin */
-  }
-  .timeline-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 18%;
-  }
-  .timeline-number {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8); /* More opaque background */
-    backdrop-filter: blur(10px) saturate(1.5);
-    -webkit-backdrop-filter: blur(10px) saturate(1.5);
-    border: 1px solid rgba(255, 255, 255, 1); /* Changed outline to solid white */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 16px;
-    font-weight: 700;
-    color: #303030; /* Lighter dark grey */
-    margin-bottom: 12px; /* Close spacing */
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); /* Stronger shadow under the circles */
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-    z-index: 10; /* Bring circles in front */
-  }
-  .timeline-number:hover {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-5px);
-  }
-  .timeline-item h4 {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 12px;
-    text-transform: uppercase;
-    margin: 0;
-    color: #555; /* Lighter dark grey */
-    text-align: center;
-    letter-spacing: 1px;
-  }
   /* Gallery Styles */
   .problem-section {
     padding: 150px 10%;
@@ -366,7 +292,7 @@
     display: none; 
   }
   .carousel-card {
-    flex: 0 0 350px;
+    flex: 0 0 450px; /* Wider cards for a larger carousel */
     height: 750px; /* Unified height for all cards */
     border-radius: 30px;
     overflow: hidden;
@@ -434,7 +360,20 @@
 </style>
 </head>
 
-<body>
+<body class="has-sidebar">
+
+<aside class="sidebar">
+  <a href="index.html" class="sidebar-home" onclick="sessionStorage.setItem('skipIndexAnimations','1')"><span class="sidebar-home-arrow">←</span> Home</a>
+  <div class="sidebar-section-title">On this page</div>
+  <ul class="sidebar-page-nav">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#ideation-target">Ideation</a></li>
+    <li><a href="#app-target">App</a></li>
+    <li><a href="#process-target">Process</a></li>
+    <li><a href="#exhibition-target">Exhibition</a></li>
+  </ul>
+  <a href="#overview" class="sidebar-back-to-top">↑ Back to top</a>
+</aside>
 
 <div class="cursor"></div>
 
@@ -446,46 +385,21 @@
   </div>
 </div>
 
-<div class="project-hero">
+<div class="project-hero"></div>
+<div class="project-hero-title" id="overview">
   <h1>Seedle</h1>
-  <div class="project-description">
-    <p>Interactive Experience Design</p>
-    <p>Featured at The Triennial Exhibition 2025 @ RISD</p>
-    <br>
-    <p>Seedle is a project focused on digital-physical interaction, exploring how we can plant seeds of creativity through simple, intuitive gestures. Developed over a week of intense prototyping, it represents a synthesis of technical skill and visual storytelling.</p>
+  <div class="overview-meta">
+      <span><span class="meta-label">Timeline</span> <span class="meta-value">2 weeks</span></span>
+  <span><span class="meta-label">Materials</span> <span class="meta-value">White & Transparent PLA</span></span>
+
+    <span><span class="meta-label">Tools</span> <span class="meta-value">Figma, Solidworks, 3D Printer (Bamboo), and Finishing tools.</span></span>
   </div>
-
-  <div class="process-section">
-    <div class="timeline-container">
-      <div class="timeline-glass-pill"></div>
-      <div class="timeline-items">
-        <div class="timeline-item" onclick="document.getElementById('ideation-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">1</div>
-          <h4>Ideation</h4>
-        </div>
-        <div class="timeline-item" onclick="document.getElementById('app-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">2</div>
-          <h4>App</h4>
-        </div>
-        <div class="timeline-item" onclick="document.getElementById('process-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">3</div>
-          <h4>Process</h4>
-        </div>
-
-        <div class="timeline-item" onclick="document.getElementById('exhibition-target').scrollIntoView({ behavior: 'smooth' });" style="cursor: pointer;">
-          <div class="timeline-number">4</div>
-          <h4>Exhibition</h4>
-        </div>
-      </div>
+  <div class="overview-context">
+    <div class="overview-block-label">Context</div>
+    <div class="overview-block-content">Seedle is a project focused on digital-physical interaction, exploring how we can plant seeds of creativity through simple, intuitive gestures. Developed over 2 weeks of intense prototyping, it represents a synthesis of technical skill and visual storytellin.
     </div>
   </div>
-</div>
-
-<div class="problem-section">
-  <span class="problem-label">The Problem</span>
-  <h2 class="problem-statement">
-   Climate change and well-intentioned but harmful human practices are disrupting hummingbird survival and natural food systems.
-  </h2>
+  
 </div>
 
 <div class="project-gallery">
@@ -513,15 +427,14 @@
     </div>
     <div class="ideation-menu">
       <!-- Why Section -->
-      <div class="ideation-item">
+      <div class="ideation-item active">
         <button class="ideation-trigger" onclick="toggleIdeation(this)">
           <span class="ideation-title">Problem</span>
           <span class="ideation-icon">+</span>
         </button>
         <div class="ideation-content">
           <div class="ideation-text">
-<p>Hummingbirds is the subjects for this project. When doing research I leanred the reason for the declination of population in hummingbirds were mostly caused from global warming and human errors. Global warming causes the hummingbirds natural food resources to bloom too early, which by the time they migrate back to the east coast most natural foodsource are well gone, causing them to rely on bird feeders. This leads to a bigger disaster for the species since one, housecats are the leading cause of death for these species and two people arent cleaning their bird feeders causing a growth in mold and consumption of such can lead to dealthy illnesses. </p>         </div>
-          <div class="why-gallery" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px;">
+            <p>Hummingbirds are the focus of this project. Research shows their population decline is largely due to global warming and human impact. Climate change causes their natural food sources to bloom earlier than usual, so when hummingbirds migrate back to the East Coast, many flowers are already gone. As a result, they depend more on bird feeders. This creates further risks: housecats are a leading cause of hummingbird deaths, and poorly maintained feeders can grow mold, which can cause serious and sometimes fatal illnesses when consumed.</p>          <div class="why-gallery" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px;">
             <img src="photo/seedle/Screenshot 2026-01-23 085222.png" alt="Stakeholder Mapping" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
             <img src="photo/seedle/DI.png" alt="Research Diagram" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
           </div>
@@ -529,14 +442,14 @@
       </div>
 
       <!-- What Section -->
-      <div class="ideation-item">
+      <div class="ideation-item active">
         <button class="ideation-trigger" onclick="toggleIdeation(this)">
           <span class="ideation-title">Context</span>
           <span class="ideation-icon">+</span>
         </button>
         <div class="ideation-content">
           <div class="ideation-text">
-            <p>My first thought was to re-design an easy to clean bird feeders, however i didnt believe tht it combsted the root issue which led to my question of how might we create a more engaging and educational experience for people to learn about hummingbirds and their ecological importance, while also promoting conservation efforts? When doign an ideation mind map the answer became clearer.</p>
+            <p>At first, I considered redesigning an easier-to-clean bird feeder, but I realized it did not address the root problem. This led me to ask how we might create a more engaging and educational experience that teaches people about hummingbirds and their ecological importance while promoting conservation. Through an ideation mind map, the direction became clearer.</p>          
           </div>
           <div class="context-gallery" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px;">
             <img src="photo/seedle/IMG_2849.JPG" alt="Context Sketch" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
@@ -546,15 +459,16 @@
       </div>
 
       <!-- How Section -->
-      <div class="ideation-item">
+      <div class="ideation-item active">
         <button class="ideation-trigger" onclick="toggleIdeation(this)">
           <span class="ideation-title">Solution</span>
           <span class="ideation-icon">+</span>
         </button>
         <div class="ideation-content">
           <div class="ideation-text">
-            <p> My final solution after creating midn maps and researching came to creating a versatile exerience where we combine both physical and digital elements to create a more engaging and educational experience for people to learn about hummingbirds and their ecological importance, while also promoting conservation efforts. Thus Seedle was born, a seed shaker that is paired with a companion app that allows users to track their plant growth, discover new species, and contribute to a community bloom map.</p>
-          <div class="how-gallery" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px;">
+            <p>After mind mapping and research, my final solution was to create a versatile experience that combines physical and digital elements to make learning about hummingbirds and their ecological importance more engaging while encouraging conservation. This led to Seedle, a seed shaker paired with a companion app where users can track plant growth, discover species, and contribute to a shared bloom map.</p>         
+          </div>
+             <div class="how-gallery" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px;">
             <img src="photo/seedle/re2.png" alt="System Diagram" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
             <img src="photo/seedle/re3.png" alt="Rack Sketch" class="zoomable" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
           </div>
@@ -742,7 +656,7 @@
 </div>
 
 <div style="text-align: center; padding: 60px 0 100px 0; background: #fff;">
-  <a href="index.html" class="back-button" onclick="sessionStorage.setItem('skipIndexAnimations','1')">← Back to Home</a>
+  <a href="headphone.html" class="back-button">Next project →</a>
 </div>
 
 <div class="lightbox" id="lightbox">
@@ -752,12 +666,16 @@
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-left">
+      <p style="font-size: 0.9rem; color: #888; margin-bottom: 6px;">Made by hand and &lt;3</p>
       <p>&copy; 2026 Janet Sun. All rights reserved.</p>
     </div>
     <div class="footer-right">
-      <a href="#">Instagram</a>
-      <a href="#">LinkedIn</a>
-      <a href="mailto:janetsun05@gmail.com">Email</a>
+      <p class="footer-say-hi">Say hi!</p>
+      <div class="footer-links">
+        <a href="mailto:janetsun05@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/janet-sun05" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="#">Instagram</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -816,7 +734,7 @@
       const wrapperRect = wrapper.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       const totalScrollable = wrapperRect.height - viewportHeight;
-      const movementEnd = totalScrollable * 0.80; 
+      const movementEnd = Math.max(totalScrollable * 0.80, 1);
       
       let scrollProgress = -wrapperRect.top / movementEnd;
       scrollProgress = Math.max(0, Math.min(1, scrollProgress));

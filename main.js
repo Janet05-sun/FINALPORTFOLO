@@ -19,6 +19,13 @@ function hideIndexLoading() {
   }
 }
 
+function showIndexLoading() {
+  if (indexLoading) {
+    indexLoading.classList.remove('hidden');
+    indexLoading.setAttribute('aria-hidden', 'false');
+  }
+}
+
 if (video) {
   // Set speed before load so the first frame is already at 2x (avoids 1x→2x glitch)
   video.playbackRate = 2.0;
@@ -39,14 +46,17 @@ if (video) {
     revealContent(); // Show content even if video fails
   });
 
-  // If loading stalls, retry once after a delay (avoid immediate reload glitch)
+  // If loading stalls/buffers, briefly show loader again and retry a couple times
   let stalledRetries = 0;
-  video.addEventListener('stalled', () => {
-    if (stalledRetries >= 1) return;
+  function handleStall() {
+    if (stalledRetries >= 2) return;
     stalledRetries++;
-    console.warn('Video loading stalled, retrying once...');
+    console.warn('Hero video stalled, showing loader and retrying...', stalledRetries);
+    showIndexLoading();
     setTimeout(() => { video.load(); }, 300);
-  });
+  }
+  video.addEventListener('stalled', handleStall);
+  video.addEventListener('waiting', handleStall);
   
   // Store the original text and clear it for the typewriter effect
   const originalText = bgPara ? bgPara.textContent.trim().replace(/\s+/g, ' ') : '';
@@ -59,7 +69,7 @@ if (video) {
     hideIndexLoading();
 
     if (heroName) {
-      heroName.style.opacity = '1';
+      heroName.classList.add('visible');
     }
 
     // Wait for hero name to show up first before revealing cards
@@ -102,7 +112,7 @@ if (video) {
     sessionStorage.removeItem('skipIndexAnimations');
     hasRevealed = true;
     hideIndexLoading();
-    if (heroName) heroName.style.opacity = '1';
+    if (heroName) heroName.classList.add('visible');
     if (nav) nav.style.opacity = '1';
     const gallerySection = document.querySelector('.gallery-section');
     if (gallerySection) gallerySection.classList.remove('gallery-section-blurred');
@@ -141,6 +151,7 @@ cards.forEach(card => {
   card.addEventListener('click', (e) => {
     if (card.classList.contains('card-falling')) return;
     card.classList.add('card-falling');
+    document.body.classList.add('cards-landed'); // no more "click me" hover after a card falls
     card.style.zIndex = 1000;
     card.style.transition = 'transform 1.2s ease-in';
     const rotation = cardRotations[card.classList[1]] || '0deg';
@@ -157,49 +168,48 @@ hoverElements.forEach(el => {
 });
 
 // Ideation Section Toggle
+// Seedle page: keep all ideation items open, no toggling.
+const isSeedlePage = !!document.getElementById('ideation-target');
+
 function toggleIdeation(element) {
+  if (isSeedlePage) return;
   const item = element.parentElement;
-  
-  // If the current item is already active, close it
-  if (item.classList.contains('active')) {
-    item.classList.remove('active');
-  } else {
-    // Close all other items
-    document.querySelectorAll('.ideation-item').forEach(otherItem => {
-      otherItem.classList.remove('active');
-    });
-    // Open current item
-    item.classList.add('active');
-  }
+  // Always open the clicked item and close others; don't close it on re-click.
+  document.querySelectorAll('.ideation-item').forEach(otherItem => {
+    if (otherItem !== item) otherItem.classList.remove('active');
+  });
+  item.classList.add('active');
 }
 
 // Scroll-based reveal for Ideation items
-const ideationObserverOptions = {
-  root: null,
-  rootMargin: '-42% 0px -42% 0px', // Narrower center band for more stability
-  threshold: 0
-};
+if (!isSeedlePage) {
+  const ideationObserverOptions = {
+    root: null,
+    rootMargin: '-42% 0px -42% 0px', // Narrower center band for more stability
+    threshold: 0
+  };
 
-let ideationTimeout;
+  let ideationTimeout;
 
-const ideationObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      clearTimeout(ideationTimeout);
-      ideationTimeout = setTimeout(() => {
-        document.querySelectorAll('.ideation-item').forEach(item => {
-          if (item !== entry.target) item.classList.remove('active');
-        });
-        entry.target.classList.add('active');
-      }, 150);
-    } else {
-      entry.target.classList.remove('active');
-      // Also clear timeout if the item that was about to open leaves the zone
-      clearTimeout(ideationTimeout);
-    }
+  const ideationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        clearTimeout(ideationTimeout);
+        ideationTimeout = setTimeout(() => {
+          document.querySelectorAll('.ideation-item').forEach(item => {
+            if (item !== entry.target) item.classList.remove('active');
+          });
+          entry.target.classList.add('active');
+        }, 150);
+      } else {
+        entry.target.classList.remove('active');
+        // Also clear timeout if the item that was about to open leaves the zone
+        clearTimeout(ideationTimeout);
+      }
+    });
+  }, ideationObserverOptions);
+
+  document.querySelectorAll('.ideation-item').forEach(item => {
+    ideationObserver.observe(item);
   });
-}, ideationObserverOptions);
-
-document.querySelectorAll('.ideation-item').forEach(item => {
-  ideationObserver.observe(item);
-});
+}
