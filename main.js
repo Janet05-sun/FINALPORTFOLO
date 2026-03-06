@@ -131,12 +131,71 @@ if (video) {
   }
 }
 
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-});
+if (cursor) {
+  let cursorTargetX = window.innerWidth / 2;
+  let cursorTargetY = window.innerHeight / 2;
+  let cursorCurrentX = cursorTargetX;
+  let cursorCurrentY = cursorTargetY;
+  let cursorFrame = null;
+  const cursorEase = 0.22;
+
+  const renderCursor = () => {
+    cursorCurrentX += (cursorTargetX - cursorCurrentX) * cursorEase;
+    cursorCurrentY += (cursorTargetY - cursorCurrentY) * cursorEase;
+
+    if (Math.abs(cursorTargetX - cursorCurrentX) < 0.1) cursorCurrentX = cursorTargetX;
+    if (Math.abs(cursorTargetY - cursorCurrentY) < 0.1) cursorCurrentY = cursorTargetY;
+
+    cursor.style.transform = `translate3d(${cursorCurrentX}px, ${cursorCurrentY}px, 0) translate(-50%, -50%)`;
+
+    if (cursorCurrentX !== cursorTargetX || cursorCurrentY !== cursorTargetY) {
+      cursorFrame = window.requestAnimationFrame(renderCursor);
+    } else {
+      cursorFrame = null;
+    }
+  };
+
+  document.addEventListener('mousemove', (e) => {
+    cursorTargetX = e.clientX;
+    cursorTargetY = e.clientY;
+
+    if (!cursorFrame) {
+      cursorFrame = window.requestAnimationFrame(renderCursor);
+    }
+  }, { passive: true });
+
+  renderCursor();
+}
 
 const cardRotations = { orange: '-3deg', peach: '2deg', green: '6deg' };
+const cardLandingOrder = { orange: 0, peach: 1, green: 2 };
+
+function getFooterLandingDistance(card, footer) {
+  const cardRect = card.getBoundingClientRect();
+  const footerRect = footer.getBoundingClientRect();
+  const scrollTop = window.scrollY || window.pageYOffset || 0;
+  const footerStyles = window.getComputedStyle(footer);
+  const footerTop = footerRect.top + scrollTop;
+  const footerBottom = footerTop + footerRect.height;
+  const footerPaddingTop = parseFloat(footerStyles.paddingTop) || 0;
+  const footerPaddingBottom = parseFloat(footerStyles.paddingBottom) || 0;
+  const usableTop = footerTop + footerPaddingTop;
+  const usableBottom = footerBottom - footerPaddingBottom;
+  const landingIndex = cardLandingOrder[card.classList[1]] || 0;
+  const verticalGap = Math.max(18, Math.min(36, footerRect.height * 0.08));
+  const targetBottom = usableBottom - (landingIndex * verticalGap);
+  const minTop = usableTop;
+  const targetTop = Math.max(minTop, targetBottom - cardRect.height);
+
+  // Use card's layout position (before transform), not visual position, because
+  // translateY() moves from layout position. Otherwise cards land in the wrong place at 100% zoom.
+  const board = card.closest('.board');
+  const cardLayoutTop = board
+    ? board.getBoundingClientRect().top + scrollTop + parseFloat(getComputedStyle(card).top)
+    : cardRect.top + scrollTop;
+
+  return targetTop - cardLayoutTop;
+}
 
 cards.forEach(card => {
   // Blue card: only toggle dark-mode on mousedown/mouseup (no fall, no drag)
@@ -153,19 +212,41 @@ cards.forEach(card => {
     card.classList.add('card-falling');
     document.body.classList.add('cards-landed'); // no more "click me" hover after a card falls
     card.style.zIndex = 1000;
-    card.style.transition = 'transform 1.2s ease-in';
     const rotation = cardRotations[card.classList[1]] || '0deg';
-    card.style.transform = `translateY(220vh) rotate(${rotation})`;
+
+    const footer = document.getElementById('footer');
+    const fallDistance = footer
+      ? getFooterLandingDistance(card, footer)
+      : (window.innerHeight || 800);
+
+    // Preserve existing translateX (e.g. orange card) so card doesn't jump horizontally
+    const currentTransform = getComputedStyle(card).transform;
+    let translateX = 0;
+    if (currentTransform && currentTransform !== 'none') {
+      const m = currentTransform.match(/matrix\(([^)]+)\)/);
+      if (m) {
+        const parts = m[1].split(',').map(Number);
+        if (parts.length >= 6) translateX = parts[4]; // matrix(a,b,c,d,tx,ty)
+      }
+    }
+    const translateXStr = translateX !== 0 ? ` translateX(${translateX}px)` : '';
+
+    // Trigger the fall animation
+    card.style.transition = 'transform 1.3s ease-in';
+    card.style.transform = `translateY(${fallDistance}px)${translateXStr} rotate(${rotation})`;
+
   });
 });
 
 
 // Cursor grow effect on hover
 const hoverElements = document.querySelectorAll('.card, .gallery-item img, .gallery-item video');
-hoverElements.forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
-});
+if (cursor) {
+  hoverElements.forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+  });
+}
 
 // Ideation Section Toggle
 // Seedle page: keep all ideation items open, no toggling.

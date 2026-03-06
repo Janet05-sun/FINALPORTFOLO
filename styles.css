@@ -6,6 +6,13 @@
   --green: #ffffff;
   --pink: #ffffff;
   --text-dark: #000000;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 2.5rem;
+  --space-3xl: 3rem;
 }
 
 * {
@@ -13,6 +20,7 @@
 }
 
 html {
+  font-size: 100%;
   scroll-behavior: smooth;
   cursor: none;
 }
@@ -21,10 +29,14 @@ body {
   margin: 0;
   background: var(--bg);
   font-family: Inter, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
   cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10+ and Edge */
   user-select: none; /* Standard syntax */
@@ -37,10 +49,10 @@ body {
   left: 0;
   right: 0;
   z-index: 10000;
-  padding: 16px 24px;
+  padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 4vw, 1.5rem);
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: clamp(0.6875rem, 1.5vw, 0.75rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   background: rgba(255, 255, 255, 0.05);
@@ -56,7 +68,7 @@ body {
 
 /* Problem Section Styles */
 .problem-section {
-  padding: 140px 10%;
+  padding: clamp(3rem, 8vw, 8.75rem) 10%;
   background: #fff;
   text-align: center;
   position: relative;
@@ -69,20 +81,20 @@ body {
 
 .problem-label {
   font-family: 'Roboto Mono', monospace;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.125rem;
   color: #666;
-  margin-bottom: 40px;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 400;
   display: block;
 }
 
 .problem-statement {
   font-family: 'Source Serif 4', serif;
-  font-size: 2.4rem;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
   line-height: 1.4;
-  max-width: 1000px;
+  max-width: min(1000px, 90vw);
   margin: 0 auto;
   color: #222;
   font-weight: 400;
@@ -90,15 +102,15 @@ body {
 
 @media (max-width: 768px) {
   .problem-section {
-    padding: 80px 5%;
+    padding: clamp(2.5rem, 10vw, 5rem) 5%;
   }
   .problem-statement {
-    font-size: 1.8rem;
+    font-size: clamp(1.25rem, 4vw, 1.8rem);
   }
 }
 
 .nav-right span {
-  margin-left: 24px;
+  margin-left: clamp(1rem, 3vw, 1.5rem);
 }
 
 /* Sidebar – page menu only (not on index) */
@@ -107,17 +119,17 @@ body {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 200px;
+  width: min(200px, 45vw);
   z-index: 9998;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-right: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 80px 0 40px 24px;
+  padding: clamp(3rem, 8vw, 5rem) 0 clamp(2rem, 5vw, 2.5rem) clamp(1rem, 4vw, 1.5rem);
   display: flex;
   flex-direction: column;
   font-family: 'Roboto Mono', monospace;
-  font-size: 11px;
+  font-size: clamp(0.625rem, 1.2vw, 0.6875rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -126,9 +138,9 @@ body {
   font-weight: 600;
   color: #000;
   text-decoration: none;
-  margin-bottom: 24px;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
   cursor: pointer;
-  font-size: 11px;
+  font-size: clamp(0.625rem, 1.2vw, 0.6875rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -136,14 +148,14 @@ body {
   opacity: 0.7;
 }
 .sidebar-home .sidebar-home-arrow {
-  margin-right: 8px;
+  margin-right: 0.5rem;
 }
 .sidebar-section-title {
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.15em;
   color: #888;
-  margin: 0 0 12px 0;
-  padding-bottom: 4px;
+  margin: 0 0 0.75rem 0;
+  padding-bottom: 0.25rem;
 }
 .sidebar-page-nav {
   list-style: none;
@@ -151,7 +163,7 @@ body {
   padding: 0;
 }
 .sidebar-page-nav li {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 .sidebar-page-nav a {
   color: #555;
@@ -168,8 +180,8 @@ body {
   color: #555;
   text-decoration: none;
   cursor: pointer;
-  padding-top: 16px;
-  font-size: 11px;
+  padding-top: 1rem;
+  font-size: clamp(0.625rem, 1.2vw, 0.6875rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -177,7 +189,7 @@ body {
   color: #000;
 }
 body.has-sidebar {
-  padding-left: 200px;
+  padding-left: min(200px, 45vw);
 }
 @media (max-width: 900px) {
   .sidebar {
@@ -193,20 +205,20 @@ body.has-sidebar {
 .overview-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px 32px;
+  gap: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem);
   font-family: 'Roboto Mono', monospace;
-  font-size: 11px;
+  font-size: clamp(0.625rem, 1.2vw, 0.6875rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #666;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .overview-meta span {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
   align-items: flex-start;
 }
 .overview-meta .meta-label {
@@ -218,16 +230,16 @@ body.has-sidebar {
 
 .overview-context,
 .overview-problem {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 .overview-context .overview-block-label,
 .overview-problem .overview-block-label {
   font-family: 'Roboto Mono', monospace;
-  font-size: 10px;
+  font-size: 0.625rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #888;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 .overview-context .overview-block-content,
 .overview-problem .overview-block-content {
@@ -238,7 +250,7 @@ body.has-sidebar {
 }
 .overview-problem .overview-block-content {
   font-family: 'Source Serif 4', serif;
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
   line-height: 1.4;
   color: #22222225;
 }
@@ -248,22 +260,23 @@ body.has-sidebar {
   position: relative;
   width: 100%;
   height: 65vh;
+  min-height: 20rem;
 }
 
 .bg-paragraph {
   position: absolute;
-  top: 65px;
-  left: 24px;
-  font-size: 16px;
+  top: clamp(2rem, 6vw, 4rem);
+  left: clamp(0.75rem, 2vw, 1.5rem);
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
   color: #eeeeee; /* Lighter Grey */
-  width: 36vw;
+  width: min(36vw, 90%);
   line-height: 1.4;
   z-index: 5;
   pointer-events: none;
   font-family: 'Roboto Mono', monospace;
   margin: 0;
   white-space: pre-wrap;
-  word-spacing: 2px;
+  word-spacing: 0.125rem;
   transition: color 0.5s ease, filter 0.5s ease-out;
   filter: blur(8px);
 }
@@ -285,8 +298,8 @@ body.has-sidebar {
 }
 
 .hero-video {
-  width: 45vw;
-  max-width: 650px;
+  width: min(45vw, 650px);
+  max-width: 100%;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -296,14 +309,14 @@ body.has-sidebar {
 }
 
 .hero-name {
-  font-size: 19px;
+  font-size: clamp(0.875rem, 1.2vw, 1.1875rem);
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: -0.07em;
   color: #000;
   text-align: right;
-  margin-top: -150px;
-  margin-right: 80px;
+  margin-top: clamp(-8rem, -12vw, -9.375rem);
+  margin-right: clamp(2rem, 5vw, 5rem);
   position: relative;
   z-index: 500;
   opacity: 0;
@@ -318,21 +331,24 @@ body.has-sidebar {
 /* Custom cursor */
 .cursor {
   position: fixed;
-  width: 25px;
-  height: 25px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: invert(1);
-  -webkit-backdrop-filter: invert(1);
+  top: 0;
+  left: 0;
+  width: clamp(18px, 1.25rem, 25px);
+  height: clamp(18px, 1.25rem, 25px);
+  background: #fff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 10001;
-  transform: translate(-50%, -50%);
-  transition: left 0.15s ease-out, top 0.15s ease-out, width 0.2s ease, height 0.2s ease;
+  transform: translate3d(-100px, -100px, 0);
+  transition: width 0.2s ease, height 0.2s ease;
+  will-change: transform, width, height;
+  backface-visibility: hidden;
+  mix-blend-mode: difference;
 }
 
 .cursor.grow {
-  width: 65px;
-  height: 65px;
+  width: clamp(45px, 4rem, 65px);
+  height: clamp(45px, 4rem, 65px);
 }
 
 /* No hand cursor - custom cursor only everywhere */
@@ -343,11 +359,11 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 /* Cards */
 .card {
   position: absolute;
-  padding: 22px 24px;
+  padding: clamp(0.875rem, 1.5vw, 1.375rem) clamp(1rem, 1.5vw, 1.5rem);
   transform-origin: center;
   /* animation will be triggered by JS after video ends */
   opacity: 0; 
-  border-radius: 20px;
+  border-radius: clamp(0.75rem, 2vw, 1.25rem);
   backdrop-filter: blur(20px) brightness(1.1) saturate(2.1);
   -webkit-backdrop-filter: blur(10px) brightness(1.1) saturate(1.1);
   border: 1px solid rgba(255, 255, 255, 0.6);
@@ -362,7 +378,7 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 }
 
 .card p {
-  font-size: 16px;
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
   line-height: 1.4;
   margin: 0;
 }
@@ -379,34 +395,38 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 }
 
 .card.orange {
-  width: 320px;
+  width: min(320px, 85vw);
+  max-width: 20rem;
 }
 
 .card.peach {
-  width: 300px;
-  font-size: 16px;
+  width: min(300px, 80vw);
+  max-width: 18.75rem;
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
 }
 
 .card.blue {
-  width: 90px;
-  height: 90px;
+  width: clamp(4rem, 6vw, 5.625rem);
+  height: clamp(4rem, 6vw, 5.625rem);
+  min-width: 4rem;
+  min-height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
 }
 
 .card.green {
-  padding: 10px 14px;
-  font-size: 22px;
+  padding: clamp(0.5rem, 1vw, 0.625rem) clamp(0.75rem, 1.5vw, 0.875rem);
+  font-size: clamp(1rem, 1.5vw, 1.375rem);
   letter-spacing: 0.15em;
 }
 
-/* Card placement */
+/* Card placement - percentage-based for reflow */
 .card.orange {
   top: 38%;
-  left: 34%;
-  transform: rotate(-3deg) translateX(38px);
+  left: clamp(5%, 34%, 34%);
+  transform: rotate(-3deg) translateX(clamp(0.5rem, 2.5vw, 2.375rem));
 }
 
 .card.peach {
@@ -430,18 +450,18 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 /* Orange card details */
 .orange .line {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin: 12px 0;
+  margin: 0.75rem 0;
 }
 
 .orange .dots {
   display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 0.625rem;
+  margin-bottom: 0.625rem;
 }
 
 .orange .dots span {
-  width: 8px;
-  height: 8px;
+  width: 0.5rem;
+  height: 0.5rem;
   background: rgba(0, 0, 0, 0.5);
   display: block;
 }
@@ -449,10 +469,10 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 /* Scroll Arrow */
 .scroll-arrow {
   position: absolute;
-  bottom: 5px;
+  bottom: 0.3rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 24px;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
   color: #000;
   animation: bounce 2s infinite;
   opacity: 0;
@@ -461,7 +481,7 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 
 .white-page-line {
   position: absolute;
-  bottom: 50px;
+  bottom: clamp(2rem, 5vw, 3.125rem);
   left: 0;
   right: 0;
   border-bottom: 1px solid #000;
@@ -482,7 +502,7 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 
 /* Gallery Section */
 .gallery-section {
-  padding: 100px 5%;
+  padding: clamp(3rem, 8vw, 6.25rem) 5%;
   background: #fff;
   min-height: 100vh;
   transition: filter 1.2s ease, opacity 1.2s ease;
@@ -494,38 +514,40 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 
 .gallery-container {
   display: flex;
-  gap: 60px;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 4vw, 3.75rem);
   align-items: flex-start;
 }
 
 .section-header {
-  width: 200px;
+  width: 100%;
+  max-width: 12.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
   position: sticky;
-  top: 100px;
+  top: clamp(4rem, 10vw, 6.25rem);
 }
 
 .section-header h1 {
   font-family: 'Roboto Mono', monospace;
-  font-size: 20px;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   text-transform: uppercase;
   color: #000;
-  letter-spacing: 2px;
+  letter-spacing: 0.125rem;
 }
 
 .section-header p {
   font-family: 'Inter', sans-serif;
-  font-size: 13px;
+  font-size: clamp(0.75rem, 1.2vw, 0.8125rem);
   line-height: 1.6;
   color: #666;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 40px;
+  letter-spacing: 0.0625rem;
+  margin-bottom: clamp(1.5rem, 5vw, 2.5rem);
 }
 
 .skills-list {
@@ -533,16 +555,16 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 }
 
 .skills-group {
-  margin-bottom: 25px;
+  margin-bottom: clamp(1rem, 2vw, 1.5625rem);
 }
 
 .skills-group h4 {
   font-family: 'Roboto Mono', monospace;
-  font-size: 11px;
+  font-size: clamp(0.625rem, 1.2vw, 0.6875rem);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 0.09375rem;
   color: #000;
-  margin: 0 0 10px 0;
+  margin: 0 0 0.625rem 0;
   font-weight: 500;
 }
 
@@ -554,24 +576,26 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 
 .skills-group li {
   font-family: 'Inter', sans-serif;
-  font-size: 10.5px;
+  font-size: clamp(0.625rem, 1.1vw, 0.65625rem);
   line-height: 1.8;
   color: #888;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03125rem;
 }
 
 .vertical-line {
   width: 1px;
   background: rgba(0, 0, 0, 0.201);
   align-self: stretch;
+  min-height: 2rem;
 }
 
 .gallery-grid {
   flex: 1;
+  min-width: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 60px;
+  grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+  gap: clamp(1.5rem, 4vw, 3.75rem);
 }
 
 .gallery-item-link {
@@ -593,10 +617,11 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 .gallery-item img,
 .gallery-item video {
   width: 100%;
-  aspect-ratio: 4/ 3.46; /* More horizontal - shows more width, less side-cropping */
+  max-width: 100%;
+  aspect-ratio: 4 / 3.46;
   object-fit: cover;
   border-radius: 0;
-  margin-bottom: 25px;
+  margin-bottom: clamp(1rem, 2vw, 1.5625rem);
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
   border: none;
   outline: none;
@@ -623,36 +648,36 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 
 .gallery-item h3 {
   font-family: 'Roboto Mono', monospace;
-  font-size: 16px;
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
   font-weight: 500;
-  margin: 10px 0 8px 0;
+  margin: 0.625rem 0 0.5rem 0;
   text-transform: uppercase;
   color: #000;
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;
 }
 
 .gallery-item h5 {
   font-family: 'Inter', sans-serif;
-  font-size: 11px;
+  font-size: clamp(0.625rem, 1.1vw, 0.6875rem);
   margin: 0;
   color: #666;
-  letter-spacing: 2px;
+  letter-spacing: 0.125rem;
   text-transform: uppercase;
   font-weight: 400;
 }
 
 .gallery-item p {
   font-family: 'Inter', sans-serif;
-  font-size: 15px;
+  font-size: clamp(0.8125rem, 1.1vw, 0.9375rem);
   line-height: 1.6;
   color: #888;
-  margin: 12px 0 0 0;
+  margin: 0.75rem 0 0 0;
   max-width: 90%;
 }
 
-/* Problem Section Styles */
+/* Problem Section Styles (shared - avoid duplicate) */
 .problem-section {
-  padding: 140px 10%;
+  padding: clamp(3rem, 8vw, 8.75rem) 10%;
   background: #fff;
   text-align: center;
   position: relative;
@@ -661,20 +686,20 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 
 .problem-label {
   font-family: 'Roboto Mono', monospace;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.125rem;
   color: #666;
-  margin-bottom: 40px;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 400;
   display: block;
 }
 
 .problem-statement {
   font-family: 'Source Serif 4', serif;
-  font-size: 2.4rem;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
   line-height: 1.4;
-  max-width: 1000px;
+  max-width: min(1000px, 90vw);
   margin: 0 auto;
   color: #222;
   font-weight: 400;
@@ -682,17 +707,17 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 
 @media (max-width: 768px) {
   .problem-section {
-    padding: 80px 5%;
+    padding: clamp(2.5rem, 10vw, 5rem) 5%;
   }
   .problem-statement {
-    font-size: 1.8rem;
+    font-size: clamp(1.25rem, 4vw, 1.8rem);
   }
 }
 
 /* Marketing Section */
 .marketing-section {
   width: 100%;
-  padding: 100px 10%;
+  padding: clamp(3rem, 8vw, 6.25rem) 10%;
   background: #fff;
   position: relative;
   z-index: 10;
@@ -701,15 +726,16 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 
 .marketing-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 50rem;
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+  box-shadow: 0 2.5rem 6.25rem rgba(0,0,0,0.1);
 }
 
 .marketing-image {
   width: 100%;
+  max-width: 100%;
   height: auto;
   display: block;
   transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
@@ -723,18 +749,20 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 .footer {
   background: #fff;
   color: #000;
-  padding: 180px 10% 100px;
+  padding: clamp(5rem, 12vw, 11.25rem) 10% clamp(3rem, 8vw, 6.25rem);
   min-height: 40vh;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .footer-content {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
   font-family: 'Roboto Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-size: clamp(0.625rem, 1.2vw, 0.6875rem);
+  letter-spacing: 0.0625rem;
   text-transform: uppercase;
 }
 
@@ -747,27 +775,27 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-right: 8%;
+  margin-right: 0;
 }
 .footer-right .footer-say-hi {
   font-family: 'Roboto Mono', monospace;
-  font-size: 15px;
-  letter-spacing: 1px;
+  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
+  letter-spacing: 0.0625rem;
   text-transform: uppercase;
   color: #666;
-  margin: 0 0 18px 0;
+  margin: 0 0 1.125rem 0;
 }
 .footer-right .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0.875rem;
 }
 .footer-right .footer-links a {
   margin-left: 0;
   color: #666;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-size: 15px;
+  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
 }
 .footer-right .footer-links a:hover {
   color: #000;
@@ -775,7 +803,7 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 .footer-right a {
   color: #666;
   text-decoration: none;
-  margin-left: 40px;
+  margin-left: 0;
   transition: color 0.3s ease;
 }
 .footer-right a:hover {
@@ -793,5 +821,127 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
     opacity: 1;
     translate: 0 0;
     filter: blur(0);
+  }
+}
+
+/* ========== Responsive breakpoints ========== */
+/* Mobile phones: 320px – 480px */
+@media (max-width: 480px) {
+  .gallery-container {
+    flex-direction: column;
+  }
+  .section-header {
+    position: static;
+    max-width: 100%;
+  }
+  .vertical-line {
+    display: none;
+  }
+  .card.orange,
+  .card.peach {
+    width: min(280px, 90vw);
+    max-width: none;
+  }
+  .hero-name {
+    margin-right: 1rem;
+  }
+}
+
+/* Large phones / small tablets: 481px – 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .gallery-container {
+    flex-direction: column;
+  }
+  .section-header {
+    position: static;
+    max-width: 100%;
+  }
+  .vertical-line {
+    display: none;
+  }
+}
+
+/* Tablets / iPad: 769px – 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section-header {
+    width: 100%;
+    max-width: 100%;
+  }
+  .gallery-container {
+    flex-direction: column;
+  }
+  .vertical-line {
+    display: none;
+  }
+}
+
+/* MacBook Air 13" / small laptops: 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .section-header {
+    width: 100%;
+    max-width: 12rem;
+  }
+}
+
+/* Large desktop: 1920px+ - preserve 1920 layout */
+@media (min-width: 1920px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+/* ========== Project page shared responsive ========== */
+@media (max-width: 1024px) {
+  .project-hero {
+    min-height: 50vh;
+    background-attachment: scroll;
+  }
+  .project-hero-title {
+    padding: clamp(1.5rem, 5vw, 2.5rem) 10% clamp(2rem, 6vw, 3.75rem);
+  }
+  .project-gallery {
+    padding: clamp(2rem, 6vw, 5rem) 10%;
+  }
+  .gallery-layout {
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 3vw, 2.5rem);
+  }
+  .ideation-section {
+    padding: clamp(2rem, 6vw, 4rem) 10%;
+  }
+  .ideation-container {
+    max-width: 100%;
+  }
+  .ideation-header h2 {
+    margin-bottom: clamp(1.5rem, 4vw, 3.75rem);
+  }
+  .ideation-trigger {
+    padding: clamp(0.75rem, 2vw, 1.875rem) 0;
+  }
+  .app-layout {
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+  .app-screen-container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-hero-title h1 {
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+  }
+  .project-hero-title .project-description {
+    font-size: clamp(0.9375rem, 2vw, 1.2rem);
+  }
+  .research-gallery {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-hero-title h1 {
+    font-size: clamp(1.25rem, 6vw, 1.75rem);
   }
 }

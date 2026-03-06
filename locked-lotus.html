@@ -17,74 +17,74 @@
     min-height: 60vh;
   }
   .project-hero-title {
-    padding: 40px 10% 60px;
+    padding: clamp(1.5rem, 4vw, 2.5rem) 10% clamp(2rem, 5vw, 3.75rem);
     background: #fff;
   }
   .project-hero-title h1 {
     font-family: 'Roboto Mono', monospace;
-    font-size: 3rem;
-    margin-bottom: 20px;
-    letter-spacing: 4px;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: 1.25rem;
+    letter-spacing: clamp(0.125rem, 0.3vw, 0.25rem);
     text-transform: uppercase;
     color: #222;
   }
   .project-hero-title .project-description {
     font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
+    font-size: clamp(0.9375rem, 1.5vw, 1.2rem);
     line-height: 1.6;
-    max-width: 600px;
+    max-width: min(600px, 90%);
     color: #444;
     margin-bottom: 0;
   }
   .overview-context .overview-block-content {
-    max-width: 920px;
+    max-width: min(920px, 95%);
     font-family: 'Inter', sans-serif;
-    font-size: 1.05rem;
+    font-size: clamp(0.9375rem, 1.2vw, 1.05rem);
     line-height: 1.7;
     color: #888;
   }
   .project-gallery {
-    padding: 80px 10%;
+    padding: clamp(2rem, 6vw, 5rem) 10%;
     background: #fff;
     position: relative;
     z-index: 10;
   }
   .ideation-section {
-    padding: 100px 10%;
+    padding: clamp(2.5rem, 8vw, 6.25rem) 10%;
     background: #fff;
   }
   .ideation-container {
-    max-width: 1200px;
+    max-width: min(1200px, 95%);
     margin: 0 auto;
   }
   .ideation-header h2 {
     font-family: 'Roboto Mono', monospace;
-    font-size: 14px;
+    font-size: clamp(0.8125rem, 1.5vw, 0.875rem);
     text-transform: uppercase;
-    margin-bottom: 60px;
-    letter-spacing: 2px;
+    margin-bottom: clamp(2rem, 5vw, 3.75rem);
+    letter-spacing: 0.125rem;
     color: #666;
     text-align: center;
     font-weight: 400;
   }
   .ideation-text {
     font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
+    font-size: clamp(0.9375rem, 1.2vw, 1.1rem);
     line-height: 1.8;
     color: #444;
-    margin-bottom: 40px;
-    max-width: 800px;
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    max-width: min(800px, 95%);
   }
   .back-button {
     display: inline-block;
-    margin-top: 40px;
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
     color: #000;
     text-decoration: none;
     font-family: 'Roboto Mono', monospace;
-    font-size: 14px;
+    font-size: clamp(0.8125rem, 1.2vw, 0.875rem);
     text-transform: uppercase;
     border-bottom: 1px solid #000;
-    padding-bottom: 4px;
+    padding-bottom: 0.25rem;
     transition: opacity 0.3s;
   }
   .back-button:hover {
@@ -113,11 +113,12 @@
     box-shadow: 0 30px 60px rgba(0,0,0,0.1);
   }
   .process-subsection {
-    margin-bottom: 82px;
+    margin-bottom: clamp(2rem, 5vw, 5.125rem);
   }
   .process-subsection-row {
     display: flex;
-    gap: 40px;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 3vw, 2.5rem);
     align-items: center;
   }
   .process-subsection-gallery {
@@ -125,11 +126,11 @@
     min-width: 0;
   }
   .process-subsection-text {
-    width: 280px;
+    width: min(280px, 100%);
     flex-shrink: 0;
-    margin-left: 100px;
+    margin-left: clamp(1rem, 6vw, 6.25rem);
     font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
+    font-size: clamp(0.875rem, 1.1vw, 0.95rem);
     line-height: 1.6;
     color: #555;
   }
@@ -143,7 +144,7 @@
   #process-target .process-subsection-text {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(12px);
+    transform: translateY(0.75rem);
     transition: opacity 2s ease, visibility 2s ease, transform 2s ease;
   }
   #process-target .process-subsection-row.in-view .process-subsection-text {
@@ -157,24 +158,25 @@
     }
     .process-subsection-text {
       width: 100%;
+      margin-left: 0;
     }
   }
   .process-subsection h3 {
     font-family: 'Roboto Mono', monospace;
-    font-size: 12px;
+    font-size: clamp(0.6875rem, 1.2vw, 0.75rem);
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.09375rem;
     color: #888;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     font-weight: 400;
   }
   .media-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 1.25rem;
   }
   #step-sketches .media-grid {
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
   }
   #step-testing .media-grid {
     grid-template-columns: repeat(2, 1fr);

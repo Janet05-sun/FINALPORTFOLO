@@ -27,8 +27,8 @@
     pointer-events: none;
   }
   .index-loading-spinner {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     border: 3px solid #eee;
     border-top-color: #333;
     border-radius: 50%;
@@ -36,11 +36,11 @@
   }
   .index-loading-text {
     font-family: 'Roboto Mono', monospace;
-    font-size: 12px;
+    font-size: clamp(0.6875rem, 1.5vw, 0.75rem);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.125rem;
     color: #888;
-    margin-top: 20px;
+    margin-top: 1.25rem;
   }
   @keyframes index-loading-spin {
     to { transform: rotate(360deg); }
@@ -61,13 +61,13 @@
     transform: translate(-50%, -50%);
     white-space: nowrap;
     font-family: 'Roboto Mono', monospace;
-    font-size: 11px;
+    font-size: clamp(0.625rem, 1.2vw, 0.6875rem);
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03125rem;
     text-transform: uppercase;
     color: #000;
     background: rgba(255, 255, 255, 0.95);
-    padding: 8px 14px;
+    padding: 0.5rem 0.875rem;
     border-radius: 100px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -88,13 +88,13 @@
     transform: translate(-50%, -50%);
     white-space: nowrap;
     font-family: 'Roboto Mono', monospace;
-    font-size: 11px;
+    font-size: clamp(0.625rem, 1.2vw, 0.6875rem);
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.03125rem;
     text-transform: uppercase;
     color: #222;
     background: rgba(255, 255, 255, 0.95);
-    padding: 8px 14px;
+    padding: 0.5rem 0.875rem;
     border-radius: 100px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     border: 1px solid rgba(0, 0, 0, 0.06);

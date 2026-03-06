@@ -17,38 +17,38 @@
     min-height: 60vh;
   }
   .project-hero-title {
-    padding: 40px 10% 60px;
+    padding: clamp(1.5rem, 4vw, 2.5rem) 10% clamp(2rem, 5vw, 3.75rem);
     background: #fff;
   }
   .project-hero-title h1 {
     font-family: 'Roboto Mono', monospace;
-    font-size: 3rem;
-    margin-bottom: 20px;
-    letter-spacing: 4px;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: 1.25rem;
+    letter-spacing: clamp(0.125rem, 0.3vw, 0.25rem);
     text-transform: uppercase;
     color: #323232;
   }
   .project-hero-title .project-description {
     font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
+    font-size: clamp(0.9375rem, 1.5vw, 1.2rem);
     line-height: 1.6;
-    max-width: 600px;
+    max-width: min(600px, 90%);
     color: #666;
     margin-bottom: 0;
   }
 
   .overview-context .overview-block-content {
-    max-width: 920px;
+    max-width: min(920px, 95%);
     font-family: 'Inter', sans-serif;
-    font-size: 1.05rem;
+    font-size: clamp(0.9375rem, 1.2vw, 1.05rem);
     line-height: 1.7;
     color: #888;
   }
 
   /* Gallery Styles */
   .project-gallery {
-    padding: 80px 10%;
-    margin-top: 80px;
+    padding: clamp(2rem, 6vw, 5rem) 10%;
+    margin-top: clamp(2rem, 6vw, 5rem);
     background: #fff;
     position: relative;
     z-index: 10;
@@ -56,25 +56,27 @@
   .gallery-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: clamp(1rem, 3vw, 2.5rem);
     align-items: start;
   }
   .gallery-image {
     width: 100%;
+    max-width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   }
   .gallery-video-container {
-    width: 45%;
-    margin: 40px auto;
+    width: min(45%, 20rem);
+    margin: clamp(1.5rem, 4vw, 2.5rem) auto;
     aspect-ratio: 1 / 0.86;
-    border-radius: 12px;
+    border-radius: 0.75rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     overflow: hidden;
   }
   .gallery-video-container video {
     width: 100%;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
     transform: scale(1.01);
@@ -84,19 +86,19 @@
 
   /* Ideation Section */
   .ideation-section {
-    padding: 100px 10%;
+    padding: clamp(2.5rem, 8vw, 6.25rem) 10%;
     background: #fff;
   }
   .ideation-container {
-    max-width: 1200px;
+    max-width: min(1200px, 95%);
     margin: 0 auto;
   }
   .ideation-header h2 {
     font-family: 'Roboto Mono', monospace;
-    font-size: 14px;
+    font-size: clamp(0.8125rem, 1.5vw, 0.875rem);
     text-transform: uppercase;
-    margin-bottom: 60px;
-    letter-spacing: 2px;
+    margin-bottom: clamp(2rem, 5vw, 3.75rem);
+    letter-spacing: 0.125rem;
     color: #666;
     text-align: center;
     font-weight: 400;
@@ -110,7 +112,7 @@
   }
   .ideation-trigger {
     width: 100%;
-    padding: 30px 0;
+    padding: clamp(1rem, 2.5vw, 1.875rem) 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -121,18 +123,18 @@
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   }
   .ideation-trigger:hover {
-    padding-left: 10px;
+    padding-left: 0.625rem;
   }
   .ideation-title {
     font-family: 'Roboto Mono', monospace;
-    font-size: 1.8rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.8rem);
     font-weight: 500;
     text-transform: uppercase;
     color: #000;
-    letter-spacing: -1px;
+    letter-spacing: -0.0625rem;
   }
   .ideation-icon {
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 1.5vw, 1.5rem);
     transition: transform 2.5s cubic-bezier(0.23, 1, 0.32, 1);
     font-weight: 300;
   }
@@ -143,8 +145,8 @@
     opacity: 0;
   }
   .ideation-item.active .ideation-content {
-    max-height: 1200px;
-    padding-bottom: 40px;
+    max-height: 75rem;
+    padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
     opacity: 1;
   }
   .ideation-item.active .ideation-icon {
@@ -152,11 +154,11 @@
   }
   .ideation-text {
     font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
+    font-size: clamp(0.9375rem, 1.2vw, 1.1rem);
     line-height: 1.8;
     color: #444;
-    max-width: 800px;
-    margin-bottom: 30px;
+    max-width: min(800px, 95%);
+    margin-bottom: clamp(1rem, 2vw, 1.875rem);
   }
 
   .zoomable {
@@ -171,15 +173,15 @@
   }
 
   .back-button {
-    margin-top: 50px;
+    margin-top: clamp(1.5rem, 5vw, 3.125rem);
     display: inline-block;
     color: #000;
     text-decoration: none;
     font-family: 'Roboto Mono', monospace;
+    font-size: clamp(0.8125rem, 1.2vw, 0.875rem);
     text-transform: uppercase;
-    font-size: 14px;
     border-bottom: 1px solid #000;
-    padding-bottom: 4px;
+    padding-bottom: 0.25rem;
   }
 
   /* Lightbox Styles */
@@ -206,51 +208,15 @@
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     transform: scale(0.9);
     transition: transform 0.3s ease;
   }
-  .back-button {
-    margin-top: 50px;
-    display: inline-block;
-    color: #000;
-    text-decoration: none;
-    font-family: 'Roboto Mono', monospace;
-    text-transform: uppercase;
-    font-size: 14px;
-    border-bottom: 1px solid #000;
-    padding-bottom: 4px;
+  @media (max-width: 768px) {
+    .gallery-video-container {
+      width: min(90%, 20rem);
+    }
   }
-
-  /* Lightbox Styles */
-  .lightbox {
-    display: none;
-    position: fixed;
-    z-index: 10000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    cursor: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    align-items: center;
-    justify-content: center;
-  }
-  .lightbox.active {
-    display: flex;
-    opacity: 1;
-  }
-  .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    border-radius: 4px;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-  }
-
   /* Moving carousel for headphone renders */
   .headphone-carousel {
     position: relative;

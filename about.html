@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="styles.css">
 <style>
   .about-container {
-    padding: 120px 10%;
+    padding: clamp(3rem, 10vw, 7.5rem) 10%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,38 +17,42 @@
     background: #fff;
   }
   .about-content {
-    max-width: 1200px;
+    max-width: 75rem;
     width: 100%;
     display: flex;
-    gap: 80px;
+    flex-wrap: wrap;
+    gap: clamp(2rem, 5vw, 5rem);
     align-items: center;
   }
   .about-text {
     flex: 1;
+    min-width: 0;
   }
   .about-image {
-    width: 320px;
+    width: 100%;
+    max-width: 20rem;
     flex-shrink: 0;
   }
   .about-image img {
     width: 100%;
+    max-width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   }
   .about-content h1 {
     font-family: 'Roboto Mono', monospace;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.125rem;
   }
   .about-content p {
     font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
     line-height: 1.8;
     color: #444;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
   @media (max-width: 900px) {
     .about-content {
@@ -57,21 +61,21 @@
     }
     .about-image {
       width: 100%;
-      max-width: 400px;
-      margin-bottom: 40px;
+      max-width: 25rem;
+      margin-bottom: clamp(2rem, 5vw, 2.5rem);
     }
   }
   .back-button {
-    margin-top: 60px;
+    margin-top: clamp(2rem, 5vw, 3.75rem);
     display: inline-block;
     font-family: 'Roboto Mono', monospace;
     text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 1px;
+    font-size: clamp(0.6875rem, 1.2vw, 0.75rem);
+    letter-spacing: 0.0625rem;
     color: #000;
     text-decoration: none;
     border-bottom: 1px solid #000;
-    padding-bottom: 4px;
+    padding-bottom: 0.25rem;
   }
 </style>
 </head>
