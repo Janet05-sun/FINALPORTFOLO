@@ -156,8 +156,9 @@ if (cursor) {
   };
 
   document.addEventListener('mousemove', (e) => {
-    cursorTargetX = e.clientX;
-    cursorTargetY = e.clientY;
+    const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+    cursorTargetX = e.clientX / zoom;
+    cursorTargetY = e.clientY / zoom;
 
     if (!cursorFrame) {
       cursorFrame = window.requestAnimationFrame(renderCursor);
@@ -171,28 +172,35 @@ const cardRotations = { orange: '-3deg', peach: '2deg', green: '6deg' };
 const cardLandingOrder = { orange: 0, peach: 1, green: 2 };
 
 function getFooterLandingDistance(card, footer) {
+  const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
   const cardRect = card.getBoundingClientRect();
   const footerRect = footer.getBoundingClientRect();
-  const scrollTop = window.scrollY || window.pageYOffset || 0;
+  
   const footerStyles = window.getComputedStyle(footer);
-  const footerTop = footerRect.top + scrollTop;
-  const footerBottom = footerTop + footerRect.height;
+  const footerTop = footerRect.top / zoom;
+  const footerHeight = footerRect.height / zoom;
+  const footerBottom = footerTop + footerHeight;
+  
   const footerPaddingTop = parseFloat(footerStyles.paddingTop) || 0;
   const footerPaddingBottom = parseFloat(footerStyles.paddingBottom) || 0;
   const usableTop = footerTop + footerPaddingTop;
   const usableBottom = footerBottom - footerPaddingBottom;
+  
   const landingIndex = cardLandingOrder[card.classList[1]] || 0;
-  const verticalGap = Math.max(18, Math.min(36, footerRect.height * 0.08));
+  const verticalGap = Math.max(18, Math.min(36, footerHeight * 0.08));
   const targetBottom = usableBottom - (landingIndex * verticalGap);
+  
   const minTop = usableTop;
-  const targetTop = Math.max(minTop, targetBottom - cardRect.height);
+  const cardHeight = cardRect.height / zoom;
+  const targetTop = Math.max(minTop, targetBottom - cardHeight);
 
-  // Use card's layout position (before transform), not visual position, because
-  // translateY() moves from layout position. Otherwise cards land in the wrong place at 100% zoom.
+  // Use card's layout position (before transform), not visual position
   const board = card.closest('.board');
+  const boardTop = board ? (board.getBoundingClientRect().top / zoom) : 0;
+  
   const cardLayoutTop = board
-    ? board.getBoundingClientRect().top + scrollTop + parseFloat(getComputedStyle(card).top)
-    : cardRect.top + scrollTop;
+    ? boardTop + parseFloat(getComputedStyle(card).top)
+    : (cardRect.top / zoom);
 
   return targetTop - cardLayoutTop;
 }

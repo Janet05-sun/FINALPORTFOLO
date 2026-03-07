@@ -20,7 +20,8 @@
 }
 
 html {
-  font-size: 100%;
+  font-size: 100%; 
+  zoom: 0.8; /* Scales EVERYTHING down to 80% including images and videos */
   scroll-behavior: smooth;
   cursor: none;
 }
@@ -481,7 +482,7 @@ a, button, [onclick], .nav > div, .nav span, .nav-right span, .back-button, .ide
 
 .white-page-line {
   position: absolute;
-  bottom: clamp(2rem, 5vw, 3.125rem);
+  bottom: clamp(1rem, 2vw, 1.5rem);
   left: 0;
   right: 0;
   border-bottom: 1px solid #000;
