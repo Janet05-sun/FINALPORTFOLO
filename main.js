@@ -248,7 +248,7 @@ cards.forEach(card => {
 
 
 // Cursor grow effect on hover
-const hoverElements = document.querySelectorAll('.card, .gallery-item img, .gallery-item video');
+const hoverElements = document.querySelectorAll('.card, .gallery-item');
 if (cursor) {
   hoverElements.forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
