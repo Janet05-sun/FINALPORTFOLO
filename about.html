@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="styles.css">
 <style>
   .about-container {
-    padding: clamp(3rem, 10vw, 7.5rem) 10%;
+    padding: clamp(2rem, 6vw, 5rem) 10%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: clamp(2rem, 5vw, 5rem);
-    align-items: center;
+    align-items: flex-start;
   }
   .about-text {
     flex: 1;
@@ -33,6 +33,7 @@
     width: 100%;
     max-width: 20rem;
     flex-shrink: 0;
+    margin-top: clamp(8rem, 16vw, 12rem);
   }
   .about-image img {
     width: 100%;
@@ -66,6 +67,88 @@
       margin-bottom: clamp(2rem, 5vw, 2.5rem);
     }
   }
+  /* Recent project carousel */
+  .about-carousel-section {
+    width: 100%;
+    max-width: 36rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: clamp(2rem, 5vw, 3.75rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about-carousel-title {
+    font-family: 'Roboto Mono', monospace;
+    font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+    text-transform: uppercase;
+    letter-spacing: 0.125rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  .about-carousel-wrapper {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    aspect-ratio: 4 / 3;
+  }
+  .about-carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .about-carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .about-carousel-slide.active {
+    display: flex;
+  }
+  .about-carousel-slide img,
+  .about-carousel-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .about-carousel-slide img.about-carousel-img-bottom {
+    object-position: center bottom;
+  }
+  .about-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: none;
+    font-size: 1.25rem;
+    color: #333;
+    transition: background 0.2s, transform 0.2s;
+    z-index: 10;
+  }
+  .about-carousel-arrow:hover {
+    background: rgba(255, 255, 255, 0.55);
+    transform: translateY(-50%) scale(1.05);
+  }
+  .about-carousel-arrow.prev { left: 0.75rem; }
+  .about-carousel-arrow.next { right: 0.75rem; }
   .back-button {
     margin-top: clamp(2rem, 5vw, 3.75rem);
     display: inline-block;
@@ -115,7 +198,33 @@
       <p>
         Wanna see more work? <a href="https://sunjanet.com" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">sunjanet.com</a>
       </p>
-      <div style="display: flex; gap: 2rem; align-items: center;">
+      <div class="about-carousel-section">
+        <h3 class="about-carousel-title">Recent project: <a href="https://modemworks.com/projects/dreamrecorder/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Building an open-source AI Dream recorder from Modem</a></h3>
+        <div class="about-carousel-wrapper">
+          <button type="button" class="about-carousel-arrow prev" aria-label="Previous">←</button>
+          <button type="button" class="about-carousel-arrow next" aria-label="Next">→</button>
+          <div class="about-carousel-track">
+            <div class="about-carousel-slide active">
+              <img src="photo/about/dream.webp" alt="AI Dream recorder device">
+            </div>
+            <div class="about-carousel-slide">
+              <video muted loop playsinline>
+                <source src="photo/about/IMG_1967 (1).mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="about-carousel-slide">
+              <img src="photo/about/IMG_1956.jpg" alt="AI Dream recorder hardware" class="about-carousel-img-bottom">
+            </div>
+            <div class="about-carousel-slide">
+              <img src="photo/about/IMG_1941.jpg" alt="AI Dream recorder prototype">
+            </div>
+            <div class="about-carousel-slide">
+              <img src="photo/about/IMG_1942.jpg" alt="AI Dream recorder 3D print">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 2rem; align-items: center; justify-content: center;">
         <a href="index.html" class="back-button" onclick="sessionStorage.setItem('skipIndexAnimations','1')">← Back to Home</a>
         <a href="./janetsunCV_ID.pdf" target="_blank" class="back-button">Resume ↗</a>
       </div>
@@ -142,6 +251,30 @@
 </footer>
 
 <script src="main.js"></script>
+<script>
+(function() {
+  const slides = document.querySelectorAll('.about-carousel-slide');
+  const prevBtn = document.querySelector('.about-carousel-arrow.prev');
+  const nextBtn = document.querySelector('.about-carousel-arrow.next');
+  let current = 0;
+
+  function showSlide(i) {
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s, idx) => {
+      s.classList.toggle('active', idx === current);
+      const v = s.querySelector('video');
+      if (v) {
+        if (idx === current) v.play();
+        else { v.pause(); v.currentTime = 0; }
+      }
+    });
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => showSlide(current - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => showSlide(current + 1));
+  showSlide(0);
+})();
+</script>
 </body>
 </html>
 
