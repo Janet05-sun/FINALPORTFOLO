@@ -149,8 +149,16 @@
   }
   .about-carousel-arrow.prev { left: 0.75rem; }
   .about-carousel-arrow.next { right: 0.75rem; }
-  .back-button {
+  .about-buttons {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
     margin-top: clamp(2rem, 5vw, 3.75rem);
+  }
+  .back-button {
+    margin-top: 0;
     display: inline-block;
     font-family: 'Roboto Mono', monospace;
     text-transform: uppercase;
@@ -195,9 +203,7 @@
       <p>
         Currently seeking internships, collaborations, and projects at the intersection of industrial design, UI/UX, and immersive media.
       </p>
-      <p>
-        Wanna see more work? <a href="https://sunjanet.com" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline;">sunjanet.com</a>
-      </p>
+    
       <div class="about-carousel-section">
         <h3 class="about-carousel-title">Recent project: <a href="https://modemworks.com/projects/dreamrecorder/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Building an open-source AI Dream recorder from Modem</a></h3>
         <div class="about-carousel-wrapper">
@@ -224,11 +230,11 @@
           </div>
         </div>
       </div>
-      <div style="display: flex; gap: 2rem; align-items: center; justify-content: center;">
-        <a href="index.html" class="back-button" onclick="sessionStorage.setItem('skipIndexAnimations','1')">← Back to Home</a>
-        <a href="./janetsunCV_ID.pdf" target="_blank" class="back-button">Resume ↗</a>
-      </div>
     </div>
+  </div>
+  <div class="about-buttons">
+    <a href="index.html" class="back-button" onclick="sessionStorage.setItem('skipIndexAnimations','1')">← Back to Home</a>
+    <a href="./janetsunCV_ID.pdf" target="_blank" class="back-button">Resume ↗</a>
   </div>
 </div>
 
